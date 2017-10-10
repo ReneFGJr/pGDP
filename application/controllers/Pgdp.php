@@ -34,14 +34,21 @@ class PGDP extends CI_Controller {
         date_default_timezone_set('America/Sao_Paulo');
     }	 
 	 
-	private function cab($cab=1)
+	private function cab($data=array())
         {
-            $this->load->view('pgdp/header/header');
+            $this->load->view('pgdp/header/header',$data);
             $this->load->view('pgdp/header/menu_top');
         }
 	public function index()
 	{
-	    $this->cab();
-		$this->load->view('pgdp/welcome');
+	    $tit = array();
+	    $tit['page_name'] = msg('Home');
+	    $this->cab($tit);
+        $this->load->view('pgdp/home/home');
+        
+        $this->load->model('pgdps');
+        
+        $data['content'] = $this->pgdps->list_plan(1);
+        $this->load->view('content',$data);
 	}
 }

@@ -5,6 +5,7 @@
 		<meta name="PGDP" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 		<title><?php
+		    if (isset($page_name)) { echo $page_name.' | '; }
             echo msg('url_title');
         ?></title>
 

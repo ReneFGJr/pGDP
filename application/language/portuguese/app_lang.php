@@ -30,7 +30,12 @@ if (!function_exists(('msg')))
 	}
 /* header and top menu */
 $lang['url_title'] = 'Plano de Gestão de Dados de Pesquisa';
-$lang['pGDP'] = '<i>p</i><span class="color_gdp"><b>GDP</b></span>'
+$lang['pGDP'] = '<i>p</i><span class="color_gdp"><b>GDP</b></span>';
+$lang['Search'] = 'Buscar';
+$lang['Home'] = 'Página Inicial';
+$lang['Link'] = 'Plano de Gestão de Dados';
 
+/* LOGIN */
+$lang['Sign In'] = 'ACESSO';
 
 ?>
