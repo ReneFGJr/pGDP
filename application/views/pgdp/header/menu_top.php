@@ -28,6 +28,9 @@ $mn = array('','active','','','','','','','','');
       <li class="nav-item text-right">
         <a class="btn btn-warning" href="#"><?php echo msg('Sign In');?> <span class="sr-only">(current)</span></a>
       </li>
+      <li class="nav-item text-right">
+        <a class="btn btn-warning" href="#" onclick="newxy('<?php echo base_url('index.php/help');?>',600,800);"><?php echo msg('HELP');?></a>
+      </li>      
     </ul>    
   </div>
 </nav>
