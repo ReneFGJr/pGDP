@@ -51,4 +51,16 @@ class PGDP extends CI_Controller {
         $data['content'] = $this->pgdps->list_plan(1);
         $this->load->view('content',$data);
 	}
+    public function login()
+        {
+            $this->load->model('socials');
+            $this->cab();
+            
+            $sx = $this->socials->action();
+                    
+            $this->load->view('social/login',null);
+            
+            $data['content'] = $sx;
+            $this->load->view('content',$data);
+        }
 }
