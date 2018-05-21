@@ -1,11 +1,12 @@
+<body style="background: url('img/background/bg.png') repeat-x;">
 <?php
 $mn = array('','active','','','','','','','','');
 ?>
-<nav class="navbar navbar-toggleable-md bg-faded navbar-inverse bg-inverse">
+<nav class="navbar navbar-toggleable-md bg-faded navbar">
   <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <a class="navbar-brand" href="#"><?php echo msg('pGDP');?></a>
+  <a class="navbar-brand" href="#"><img src="<?php echo base_url('img/logo_gdp.png');?>" height="50"></a>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">

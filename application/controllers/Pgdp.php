@@ -39,6 +39,11 @@ class PGDP extends CI_Controller {
             $this->load->view('pgdp/header/header',$data);
             $this->load->view('pgdp/header/menu_top');
         }
+
+    private function foot($data=array())
+        {
+            $this->load->view('pgdp/header/foot');
+        }
 	public function index()
 	{
 	    $tit = array();
@@ -50,6 +55,8 @@ class PGDP extends CI_Controller {
         
         $data['content'] = $this->pgdps->list_plan(1);
         $this->load->view('content',$data);
+        
+        $this->foot();
 	}
     public function login()
         {
