@@ -22,7 +22,6 @@ class PGDP extends CI_Controller {
     function __construct() {
         global $db_public;
 
-        $db_public = 'brapci_publico.';
         parent::__construct();
         $this -> load -> library('form_validation');
         $this -> load -> database();
@@ -36,8 +35,9 @@ class PGDP extends CI_Controller {
 	 
 	private function cab($data=array())
         {
+            $data['title'] = 'PGDP | UFRGS';
             $this->load->view('pgdp/header/header',$data);
-            $this->load->view('pgdp/header/menu_top');
+            //$this->load->view('pgdp/header/menu_top');
         }
 
     private function foot($data=array())
@@ -49,14 +49,7 @@ class PGDP extends CI_Controller {
 	    $tit = array();
 	    $tit['page_name'] = msg('Home');
 	    $this->cab($tit);
-        $this->load->view('pgdp/home/home');
-        
-        $this->load->model('pgdps');
-        
-        $data['content'] = $this->pgdps->list_plan(1);
-        $this->load->view('content',$data);
-        
-        $this->foot();
+        $this->load->view('pgdp/home');
 	}
     public function login()
         {

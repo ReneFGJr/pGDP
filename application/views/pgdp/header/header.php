@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 	<header>
 		<meta charset="utf-8">
-		<meta name="PGDP" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="PGDP | UFRGS" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 		<title><?php
 		    if (isset($page_name)) { echo $page_name.' | '; }
