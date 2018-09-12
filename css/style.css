@@ -1,4 +1,23 @@
 /****************************************************** article ***********/
+.plan_menu, .plan_menu a  
+	{
+		cursor: pointer;
+		color: #303030;
+		text-decoration: none;
+	}
+.plan_menu:hover
+	{
+		background-color: #e0e0e0;
+	}	
+.plan_menu_active
+	{
+		background-color: #e0e0ef;
+	}	
+
+.zmdi
+	{
+		font-family: Dosis, Arial, Helvetica, sans-serif;
+	}
 .article_title_0
     {
         font: bold 150%/120% 'lucida sans', 'trebuchet MS', 'Tahoma';

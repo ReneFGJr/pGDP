@@ -1,5 +1,19 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="<?php echo base_url(PATH.'main');?>">Navbar</a>
+<style>
+	.logo_td
+	{
+		border: 1px solid #FFFFFF; padding: 15px 0px 0px 0px; margin-left: 2px; width: 20px; text-align: center; background: #330011; color: white;
+		font-family: Dosis, Arial, Helvetica, sans-serif;
+	}
+</style>
+<nav class="navbar navbar-expand-lg navbar-light bg-light zmdi">
+  <a class="navbar-brand" href="<?php echo base_url(PATH.'main');?>">
+  	<table><tr>
+  		<td class="logo_td">P</td>
+  		<td class="logo_td">G</td>
+  		<td class="logo_td">D</td>
+  		<td class="logo_td">P</td>
+	</tr></table>
+  </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>

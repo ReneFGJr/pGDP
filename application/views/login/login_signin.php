@@ -15,7 +15,7 @@
 		<div class="col-md-4"></div>
 		<div class="col-md-4 box100">
 			<form method="post" action="<?php echo base_url(PATH.'social/login_local');?>">
-				<span class="form_title"> PGDP </span>
+				<span class="form_title zmdi"> PGDP </span>
 				<br/>
 				<span class="login100-form-title p-b-48"> <i class="zmdi zmdi-font"><?php echo msg('dgdp_name');?></i> </span>
 				<br/>

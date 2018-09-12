@@ -28,7 +28,6 @@
             background-color: #330011;
         }        
 </style>
-<link href="https://fonts.googleapis.com/css?family=Dosis|Titillium+Web" rel="stylesheet">
 <body style="background-color: #660033; color: white;">
 	<div class="container">
 		<div class="row">

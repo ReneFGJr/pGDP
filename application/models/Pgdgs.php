@@ -95,23 +95,29 @@ class pgdgs extends CI_model
             }
         function plan_menu($p)
             {
-                
+                $id = 1;
                 $sql = "SELECT d_descript, fr_page FROM `dcr_form`
                             inner join dcr_groups on fr_group = id_d
                             where fr_templat = 1
-                            group by d_descript
+                            group by d_descript, fr_page
                             order by fr_page";
                             
                 $rlt = $this->db->query($sql);
                 $rlt = $rlt->result_array();
                 
-                $sx = '<table width="100%">'.cr();
+                $sx = '<table width="100%" class="table">'.cr();
                 for ($r=0;$r < count($rlt);$r++)
                     {
                         $line = $rlt[$r];
+						$active = '';
+						if ($r==0)
+							{
+								$active = 'plan_menu_active';
+							}
                         $name = $line['d_descript'];
                         $pg = $line['fr_page'];
-                        $sx .= '<tr><td class="plan_menu">'.msg($name).'</td></tr>';        
+						$link = '<a href="'.base_url(PATH.'plan/'.$id.'/'.($r+1)).'">';
+                        $sx .= '<tr class="plan_menu"><td class="'.$active.' text-right" style="border-right: 1px solid #c0c0c0;" >'.$link.msg($name).'</a>'.'</td></tr>';        
                     }                                            
                 $sx .= '</table>'.cr();
                 return($sx);

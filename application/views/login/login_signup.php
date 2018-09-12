@@ -14,10 +14,10 @@
 	<div class="row">
 		<div class="col-1 col-md-3"></div>
 		<div class="col-10 col-md-6 box100">
-			<form method="post" action="<?php echo base_url('index.php/thesa/social/signup');?>">
-				<span class="form_title"> THESA </span>
+			<form method="post" action="<?php echo base_url(PATH.'social/signup');?>">
+				<span class="form_title"> PGDP </span>
 				<br/>
-				<span class="login100-form-title p-b-48"> <i class="zmdi zmdi-font">semantic thesaurus</i> </span>
+				<span class="login100-form-title p-b-48"> <i class="zmdi zmdi-font"><?php echo msg('dgdp_name');?></i> </span>
 				<br/>
 				<br/>
 				
@@ -66,7 +66,7 @@
                         if (strlen($sx) > 0)
                             {
                                 $email = get("email");
-                                $link = '<a href="'.base_url('index.php/thesa/social/pwsend?dd0='.get("email").'&chk='.md5($email.date("Ymd").$email)).'">'.msg('link').'</a>';
+                                $link = '<a href="'.base_url(PATH.'social/pwsend?dd0='.get("email").'&chk='.md5($email.date("Ymd").$email)).'">'.msg('link').'</a>';
                                 $sx = troca($sx,'$email','<b>'.$email.'</b>');
                                 $sx = troca($sx,'$link','<b>'.$link.'</b>');
                                 echo '<br>'.cr();
@@ -79,7 +79,7 @@
 
                 <br>
                 <div class="text-center p-t-115">
-                    <a class="txt2" href="<?php echo base_url('index.php/thesa/social/login');?>"><?php echo msg('return');?></a>
+                    <a class="txt2" href="<?php echo base_url(PATH.'social/login');?>"><?php echo msg('return');?></a>
                 </div>
 				<br>
 			</form>

@@ -8,7 +8,7 @@ $HTTP = 'http://www.brapci.inf.br/';
     <head lang="pt-br">
     <meta charset="utf-8">
     <title><?php echo $title; ?></title>    
-    
+    <link href="https://fonts.googleapis.com/css?family=Dosis|Titillium+Web" rel="stylesheet">
     <META NAME="title" CONTENT="Brapci - Base de Dados em Ciência da Informação">
     <META NAME="url" CONTENT="http://www.brapci.inf.br/">
     <META NAME="description" CONTENT="Base de dados de Periódicos em Ciência da Informação publicadas no Brasil desde 1972.">
