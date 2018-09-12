@@ -1,37 +1,29 @@
-<body style="background: url('img/background/bg.png') repeat-x;">
-<?php
-$mn = array('','active','','','','','','','','');
-?>
-<nav class="navbar navbar-toggleable-md bg-faded navbar">
-  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="<?php echo base_url(PATH.'main');?>">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <a class="navbar-brand" href="#"><img src="<?php echo base_url('img/logo_gdp.png');?>" height="50"></a>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item <?php echo $mn[0];?>">
-        <a class="nav-link" href="#"><?php echo msg('Home');?> <span class="sr-only">(current)</span></a>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="<?php echo base_url(PATH.'main');?>">Home <span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item <?php echo $mn[1];?>">
-        <a class="nav-link" href="#"><?php echo msg('Link');?></a>
+      <li class="nav-item">
+        <a class="nav-link" href="<?php echo base_url(PATH.'plan');?>"><?php echo msg('plan');?></a>
       </li>
-      <li class="nav-item <?php echo $mn[2];?>">
-        <a class="nav-link" href="#"><?php echo msg('Disabled');?></a>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Pricing</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Dropdown link
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="<?php echo base_url(PATH.'plan_fields');?>"><?php echo msg('config_plan_fields');?></a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
       </li>
     </ul>
-    <form class="form-inline my-2 my-lg-0" method="post" action"<?php echo base_url("search");?>">
-      <input class="form-control mr-sm-2" type="text" placeholder="<?php echo msg('Search');?>">
-      <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit"><?php echo msg('Search');?></button>
-    </form>
-    &nbsp;&nbsp;&nbsp;
-    <ul class="navbar-nav">
-      <li class="nav-item text-right">
-        <a class="btn btn-warning" href="#"><?php echo msg('Sign In');?> <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item text-right">
-        <a class="btn btn-warning" href="#" onclick="newxy('<?php echo base_url('index.php/help');?>',600,800);"><?php echo msg('HELP');?></a>
-      </li>      
-    </ul>    
   </div>
 </nav>
