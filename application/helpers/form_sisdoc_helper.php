@@ -1457,7 +1457,7 @@ if (!function_exists('form_edit')) {
             }
             if ($obj -> edit == True) {
                 $idr = trim($row[$fd[0]]);
-                $data .= '<td width="1%" align="center"><A HREF="' . $obj -> row_edit . '/' . $idr . '/' . checkpost_link($idr) . '"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></td>';
+                $data .= '<td width="1%" align="center"><A HREF="' . $obj -> row_edit . '/' . $idr . '/' . checkpost_link($idr) . '">[ed]</td>';
             }
             $data .= '</tr>' . chr(13) . chr(10);
         }

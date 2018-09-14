@@ -27,6 +27,7 @@ class PGDP extends CI_Controller {
         $this -> load -> database();
         $this -> load -> helper('form');
         $this -> load -> helper('form_sisdoc');
+		$this -> load -> helper('bootstrap');
         $this -> load -> helper('url');
         $this -> load -> library('session');       
         $this -> lang -> load("app", "portuguese");
@@ -175,5 +176,39 @@ class PGDP extends CI_Controller {
                 break;
         }
     }
+
+	function config($cmd='',$id='')
+		{
+			$this->cab();
+			$sx = '';
+			switch($cmd)
+				{
+				case 'message_export':
+					$this->load->model("messages");
+					$sx = $this->messages->create();
+					break;
+				case 'message_edit':
+					$this->load->model('messages');
+					if (strlen($id) > 0)
+						{
+							$sx = $this->messages->editar($id);
+						} else {
+							$sx = $this->messages->row();		
+						}
+					
+					break;
+				default:
+					$sx = '<ul>'.cr();
+					$sx .= '<li><a href="'.base_url(PATH.'config/message_edit').'">'.msg('config_message_edit').'</a></li>'.cr();
+					$sx .= '<li><a href="'.base_url(PATH.'config/message_export').'">'.msg('config_export_message').'</a></li>'.cr();
+					$sx .= '</ul>'.cr();
+					break;
+				
+				}
+			$data['content'] = $sx;
+			$data['title'] = msg('export_message');
+			$this->load->view("content",$data);
+			$this->foot();
+		}
 
 }

@@ -20,8 +20,8 @@ class pgdgs extends CI_model
                         $line = $rlt[$r];
                         $sx .= '<tr>';
                         $sx .= '<td align="center">'.($r+1).'</td>';
-                        $sx .= '<td>'.$line['f_descript'].'</td>';
-                        $sx .= '<td align="center">'.$line['f_group'].'</td>';
+                        $sx .= '<td>'.msg($line['f_descript']).'</td>';
+                        $sx .= '<td align="center">'.msg($line['f_group']).'</td>';
                         $sx .= '</tr>';
                     }
                 $sx .= '</table>';

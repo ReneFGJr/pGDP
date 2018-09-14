@@ -20,22 +20,21 @@
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
     <ul class="navbar-nav">
       <li class="nav-item active">
-        <a class="nav-link" href="<?php echo base_url(PATH.'main');?>">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="<?php echo base_url(PATH.'main');?>"><?php echo msg('home');?> <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="<?php echo base_url(PATH.'plan');?>"><?php echo msg('plan');?></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Pricing</a>
+        <a class="nav-link" href="#"><?php echo msg('help');?></a>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown link
+          <?php echo msg('configurations');?>
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <a class="dropdown-item" href="<?php echo base_url(PATH.'plan_fields');?>"><?php echo msg('config_plan_fields');?></a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <a class="dropdown-item" href="#">Something else here</a>
+          <a class="dropdown-item" href="<?php echo base_url(PATH.'config');?>"><?php echo msg('config_system');?></a>
         </div>
       </li>
     </ul>

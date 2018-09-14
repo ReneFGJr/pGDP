@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.2.7.1
+-- version 4.5.4.1deb2ubuntu2.1
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Sep 12, 2018 at 03:58 PM
--- Server version: 5.6.20-log
--- PHP Version: 5.4.31
+-- Generation Time: Sep 14, 2018 at 12:15 PM
+-- Server version: 5.7.23-0ubuntu0.16.04.1
+-- PHP Version: 7.0.30-0ubuntu0.16.04.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -14,7 +14,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Database: `pgdp`
@@ -26,13 +26,13 @@ SET time_zone = "+00:00";
 -- Table structure for table `dcr_fields`
 --
 
-CREATE TABLE IF NOT EXISTS `dcr_fields` (
-`id_f` bigint(20) unsigned NOT NULL,
+CREATE TABLE `dcr_fields` (
+  `id_f` bigint(20) UNSIGNED NOT NULL,
   `f_group` int(11) NOT NULL,
   `f_descript` char(20) NOT NULL,
   `f_active` int(11) NOT NULL DEFAULT '1',
   `f_form` text NOT NULL
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `dcr_fields`
@@ -44,7 +44,10 @@ INSERT INTO `dcr_fields` (`id_f`, `f_group`, `f_descript`, `f_active`, `f_form`)
 (3, 1, 'proj_funder', 1, '$S100'),
 (4, 1, 'btn_create_plan', 1, '$B8'),
 (5, 2, 'plan_grant', 1, '$S100'),
-(6, 2, 'plan_abstract', 1, '$T80:8');
+(6, 2, 'plan_abstract', 1, '$T80:8'),
+(7, 3, 'proj_authors', 1, '$AUTHOR'),
+(8, 4, 'proj_repository', 1, '$T80:4'),
+(9, 5, 'proj_disclaimer', 1, '$C1');
 
 -- --------------------------------------------------------
 
@@ -52,8 +55,8 @@ INSERT INTO `dcr_fields` (`id_f`, `f_group`, `f_descript`, `f_active`, `f_form`)
 -- Table structure for table `dcr_form`
 --
 
-CREATE TABLE IF NOT EXISTS `dcr_form` (
-`id_fr` bigint(20) unsigned NOT NULL,
+CREATE TABLE `dcr_form` (
+  `id_fr` bigint(20) UNSIGNED NOT NULL,
   `fr_templat` int(11) NOT NULL,
   `fr_group` int(11) NOT NULL,
   `fr_field` int(11) NOT NULL,
@@ -62,7 +65,7 @@ CREATE TABLE IF NOT EXISTS `dcr_form` (
   `fr_active` int(11) NOT NULL DEFAULT '1',
   `fr_page` int(11) NOT NULL,
   `fr_order` int(11) NOT NULL
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `dcr_form`
@@ -74,7 +77,11 @@ INSERT INTO `dcr_form` (`id_fr`, `fr_templat`, `fr_group`, `fr_field`, `fr_major
 (3, 1, 1, 3, 1, 1, 1, 1, 5),
 (4, 1, 1, 4, 1, 0, 1, 1, 99),
 (5, 1, 2, 5, 1, 1, 1, 2, 2),
-(6, 1, 2, 6, 1, 1, 1, 2, 4);
+(6, 1, 2, 6, 1, 1, 1, 2, 4),
+(7, 1, 3, 7, 0, 1, 1, 3, 5),
+(8, 1, 4, 8, 0, 1, 1, 4, 10),
+(9, 1, 5, 9, 0, 1, 1, 5, 50),
+(10, 1, 6, 10, 0, 1, 1, 6, 50);
 
 -- --------------------------------------------------------
 
@@ -82,12 +89,12 @@ INSERT INTO `dcr_form` (`id_fr`, `fr_templat`, `fr_group`, `fr_field`, `fr_major
 -- Table structure for table `dcr_groups`
 --
 
-CREATE TABLE IF NOT EXISTS `dcr_groups` (
-`id_d` bigint(20) unsigned NOT NULL,
+CREATE TABLE `dcr_groups` (
+  `id_d` bigint(20) UNSIGNED NOT NULL,
   `d_descript` char(40) NOT NULL,
   `d_order` int(11) NOT NULL,
   `d_active` int(11) NOT NULL DEFAULT '1'
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `dcr_groups`
@@ -97,7 +104,9 @@ INSERT INTO `dcr_groups` (`id_d`, `d_descript`, `d_order`, `d_active`) VALUES
 (1, 'group_project_abstract', 1, 1),
 (2, 'group_project_about', 2, 1),
 (3, 'group_project_method', 3, 1),
-(4, 'group_project_team', 4, 1);
+(4, 'group_project_team', 4, 1),
+(5, 'group_disclaimer', 5, 1),
+(6, 'group_export', 6, 1);
 
 -- --------------------------------------------------------
 
@@ -105,19 +114,47 @@ INSERT INTO `dcr_groups` (`id_d`, `d_descript`, `d_order`, `d_active`) VALUES
 -- Table structure for table `dcr_templat`
 --
 
-CREATE TABLE IF NOT EXISTS `dcr_templat` (
-`id_t` bigint(20) unsigned NOT NULL,
+CREATE TABLE `dcr_templat` (
+  `id_t` bigint(20) UNSIGNED NOT NULL,
   `t_name` char(20) NOT NULL,
   `t_active` int(11) NOT NULL DEFAULT '1',
   `t_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `dcr_templat`
 --
 
 INSERT INTO `dcr_templat` (`id_t`, `t_name`, `t_active`, `t_created`) VALUES
-(1, 'H2020_FAIR_DMP', 1, '2018-09-11 22:18:21');
+(1, 'H2020_FAIR_DMP', 1, '2018-09-11 22:18:21'),
+(2, 'SOCIASAPLICADAS', 1, '2018-09-14 14:52:19');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sections`
+--
+
+CREATE TABLE `sections` (
+  `id_s` bigint(20) UNSIGNED NOT NULL,
+  `s_code` int(5) NOT NULL,
+  `s_code_master` int(11) NOT NULL,
+  `s_ref` char(20) NOT NULL,
+  `s_range` int(11) NOT NULL,
+  `s_active` int(11) NOT NULL DEFAULT '1',
+  `s_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `sections`
+--
+
+INSERT INTO `sections` (`id_s`, `s_code`, `s_code_master`, `s_ref`, `s_range`, `s_active`, `s_created`) VALUES
+(1, 1, 0, 'data_summary', 0, 1, '2018-09-11 21:04:30'),
+(2, 2, 0, 'fair_data', 0, 1, '2018-09-11 21:04:30'),
+(3, 3, 2, 'making_data_findable', 0, 1, '2018-09-11 21:06:51'),
+(4, 4, 2, 'making_data_openly', 0, 1, '2018-09-11 21:06:51'),
+(5, 0, 3, 'makeing_data_interop', 0, 1, '2018-09-11 21:07:54');
 
 -- --------------------------------------------------------
 
@@ -125,8 +162,8 @@ INSERT INTO `dcr_templat` (`id_t`, `t_name`, `t_active`, `t_created`) VALUES
 -- Table structure for table `users`
 --
 
-CREATE TABLE IF NOT EXISTS `users` (
-`id_us` bigint(20) unsigned NOT NULL,
+CREATE TABLE `users` (
+  `id_us` bigint(20) UNSIGNED NOT NULL,
   `us_nome` char(80) NOT NULL,
   `us_email` char(80) NOT NULL,
   `us_cidade` char(40) NOT NULL,
@@ -155,7 +192,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `us_institution` char(50) NOT NULL,
   `us_perfil_check` int(11) NOT NULL,
   `us_badge` char(12) NOT NULL
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=507 ;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `users`
@@ -290,31 +327,37 @@ INSERT INTO `users` (`id_us`, `us_nome`, `us_email`, `us_cidade`, `us_pais`, `us
 -- Indexes for table `dcr_fields`
 --
 ALTER TABLE `dcr_fields`
- ADD UNIQUE KEY `id_f` (`id_f`);
+  ADD UNIQUE KEY `id_f` (`id_f`);
 
 --
 -- Indexes for table `dcr_form`
 --
 ALTER TABLE `dcr_form`
- ADD UNIQUE KEY `id_fr` (`id_fr`);
+  ADD UNIQUE KEY `id_fr` (`id_fr`);
 
 --
 -- Indexes for table `dcr_groups`
 --
 ALTER TABLE `dcr_groups`
- ADD UNIQUE KEY `id_d` (`id_d`);
+  ADD UNIQUE KEY `id_d` (`id_d`);
 
 --
 -- Indexes for table `dcr_templat`
 --
 ALTER TABLE `dcr_templat`
- ADD UNIQUE KEY `id_t` (`id_t`);
+  ADD UNIQUE KEY `id_t` (`id_t`);
+
+--
+-- Indexes for table `sections`
+--
+ALTER TABLE `sections`
+  ADD UNIQUE KEY `id_s` (`id_s`);
 
 --
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
- ADD UNIQUE KEY `id_us` (`id_us`);
+  ADD UNIQUE KEY `id_us` (`id_us`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -324,27 +367,32 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `dcr_fields`
 --
 ALTER TABLE `dcr_fields`
-MODIFY `id_f` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+  MODIFY `id_f` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `dcr_form`
 --
 ALTER TABLE `dcr_form`
-MODIFY `id_fr` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+  MODIFY `id_fr` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `dcr_groups`
 --
 ALTER TABLE `dcr_groups`
-MODIFY `id_d` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+  MODIFY `id_d` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `dcr_templat`
 --
 ALTER TABLE `dcr_templat`
-MODIFY `id_t` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `id_t` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `sections`
+--
+ALTER TABLE `sections`
+  MODIFY `id_s` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-MODIFY `id_us` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=507;
+  MODIFY `id_us` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=507;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
