@@ -133,9 +133,7 @@ class socials extends CI_Model {
 	}
 
 	function ac($id = '') {
-		$this -> load -> model('users');
-
-		$line = $this -> users -> le($id);
+		$line = $this -> le($id);
 		/* Salva session */
 		$ss_id = $line['id_us'];
 		$ss_user = $line['us_nome'];
@@ -144,7 +142,7 @@ class socials extends CI_Model {
 		$ss_perfil = $line['us_perfil'];
 		$data = array('id' => $ss_id, 'user' => $ss_user, 'email' => $ss_email, 'image' => $ss_image, 'perfil' => $ss_perfil);
 		$this -> session -> set_userdata($data);
-		redirect(base_url('index.php/home'));
+		redirect(base_url(PATH.'main'));
 	}
 
 	function menu_user() {

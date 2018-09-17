@@ -28,7 +28,7 @@
             background-color: #330011;
         }        
 </style>
-<body style="background-color: #660033; color: white;">
+<body class="bg">
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12 text-center">
@@ -50,7 +50,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12 text-center">
-				<a href="<?php echo base_url("index.php/pgdp/social/login");?>"><span class="btn btn-outline-primary">Desenvolver seu plano</span></a>
+				<a href="<?php echo base_url("index.php/pgdp/social/login");?>"><span class="btn btn-outline-primary"><?php echo msg("create_a_dmp");?></span></a>
 			</div>
 		</div>
 	</div>

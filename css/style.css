@@ -1,37 +1,70 @@
 /****************************************************** article ***********/
-.plan_menu, .plan_menu a  
-	{
-		cursor: pointer;
-		color: #303030;
-		text-decoration: none;
-	}
-.plan_menu:hover
-	{
-		background-color: #e0e0e0;
-	}	
-.plan_menu_active
-	{
-		background-color: #e0e0ef;
-	}	
-
-.zmdi
-	{
-		font-family: Dosis, Arial, Helvetica, sans-serif;
-	}
-.article_title_0
+.btn-outline-primary, .btn-primary
     {
-        font: bold 150%/120% 'lucida sans', 'trebuchet MS', 'Tahoma';
-        /* text-transform: uppercase; */
-        text-align: center;    
+        border-color: #660033;
+        color: #660033;
+        background-color: #ffffff;
+    }
+.btn-outline-primary:hover, .btn-primary:hover
+    {
+        border-color: #660033;
+        color: #ffffff;
+        background-color: #660033;
+    }    
+.bg, .bg:hover 
+    {
+        background-color: #660033; 
+        color: white;        
+    }
+a
+    {
+        text-decoration: none;
+        color: #505050;
+    }
+
+a:hover
+    {
+        text-decoration: none;
+        color: #000000;
     }
     
-.article_title_1
-    {
-        font: italic 110%/90% 'lucida sans', 'trebuchet MS', 'Tahoma';
-        /* text-transform: uppercase; */
-        text-align: center;    
-    }
-        
+.plan_menu, .plan_menu a {
+    cursor: pointer;
+    color: #303030;
+    text-align: right;
+    list-style-type: none;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 5px;
+    border-right: 3px solid #ffffff;
+}
+
+.plan_menu:hover, .plan_menu:hover a {
+    background-color: #e0e0e0;
+    text-decoration: none;
+    border-right: 3px solid #444444; 
+}
+.plan_menu_active {
+    background-color: #e0e0ef;
+    text-decoration: none;
+    border-right: 3px solid #000000;
+}
+
+.zmdi {
+    font-family: Dosis, Arial, Helvetica, sans-serif;
+}
+.article_title_0 {
+    font: bold 150%/120% 'lucida sans', 'trebuchet MS', 'Tahoma';
+    /* text-transform: uppercase; */
+    text-align: center;
+}
+
+.article_title_1 {
+    font: italic 110%/90% 'lucida sans', 'trebuchet MS', 'Tahoma';
+    /* text-transform: uppercase; */
+    text-align: center;
+}
+
 .h1 {
     font-size: 26px;
     text-transform: uppercase;
@@ -56,22 +89,18 @@
 .small {
     font-size: 10px;
 }
-.result
-    {
-        color: #303030;
-    }
-.result a
-    {
-        color: #303030;
-    }
-.result a:hover
-    {
-        color: #000000;
-    }
-.ucase
-    {
-        text-transform: uppercase;
-    }
+.result {
+    color: #303030;
+}
+.result a {
+    color: #303030;
+}
+.result a:hover {
+    color: #000000;
+}
+.ucase {
+    text-transform: uppercase;
+}
 /**************************************************** FORM ***************/
 /* NOTE: The styles were added inline because Prefixfree needs access to your styles and they must be inlined if they are on local disk! */
 .cf:before, .cf:after {
@@ -176,15 +205,13 @@
     padding: 0;
 }
 
-.icone_nets
-    {
-        padding-top: 4px;
-        padding-bottom: 0px;
-        cursor: pointer;
-        padding-right: 4px;
-    }
-.icone_nets:hover
-    {
-        padding-top: 0px;
-        padding-bottom: 4px;
-    }
+.icone_nets {
+    padding-top: 4px;
+    padding-bottom: 0px;
+    cursor: pointer;
+    padding-right: 4px;
+}
+.icone_nets:hover {
+    padding-top: 0px;
+    padding-bottom: 4px;
+}

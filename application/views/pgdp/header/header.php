@@ -2,7 +2,7 @@
 <?php
 if (!isset($title)) { $title = 'no title';
 }
-$HTTP = 'http://www.brapci.inf.br/';
+$HTTP = base_url();
 ?>
 <head>
     <head lang="pt-br">
@@ -24,7 +24,9 @@ $HTTP = 'http://www.brapci.inf.br/';
     <meta name="google-site-verification" content="VZpzNVBfl5kOEtr9Upjmed96smfsO9p4N79DZT38toA" />
     
     <link rel="icon" href="<?php echo $HTTP.'img/favicon.png';?>" type="image/x-icon" />
-    <link rel="shortcut icon" href="<?php echo $HTTP.'img/favicon.png';?>" type="image/x-icon" />    
+    <link rel="shortcut icon" href="<?php echo $HTTP.'img/favicon.png';?>" type="image/x-icon" /> 
+    <link rel="icon" type="image/png" href="<?php echo $HTTP;?>favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="<?php echo $HTTP;?>favicon-16x16.png" sizes="16x16" />   
     
     <!--- CSS --->
     <link href="<?php echo base_url('css/bootstrap.min.css?v4.0'); ?>" rel="stylesheet">

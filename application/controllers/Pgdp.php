@@ -19,6 +19,10 @@ class PGDP extends CI_Controller {
      * @see https://codeigniter.com/user_guide/general/urls.html
      */
 
+    var $line;
+    var $id = 0;
+    var $templat = 0;
+
     function __construct() {
         global $db_public;
 
@@ -27,22 +31,26 @@ class PGDP extends CI_Controller {
         $this -> load -> database();
         $this -> load -> helper('form');
         $this -> load -> helper('form_sisdoc');
-		$this -> load -> helper('bootstrap');
+        $this -> load -> helper('bootstrap');
         $this -> load -> helper('url');
-        $this -> load -> library('session');       
+        $this -> load -> library('session');
         $this -> lang -> load("app", "portuguese");
         date_default_timezone_set('America/Sao_Paulo');
         $this -> load -> model('socials');
     }
 
     private function cab($data = array()) {
-        
+        if (!isset($data['login'])) {
+            $user_id = $this -> socials -> user_id();
+            if ((strlen($user_id) == 0) or ($user_id == '0')) {
+                redirect(base_url(PATH));
+            }
+        }
         $data['title'] = 'PGDP | UFRGS';
         $this -> load -> view('pgdp/header/header', $data);
-        if (!isset($data['menu']))
-            {
-                $this->load->view('pgdp/header/menu_top');
-            }
+        if (!isset($data['menu'])) {
+            $this -> load -> view('pgdp/header/menu_top');
+        }
     }
 
     private function foot($data = array()) {
@@ -53,43 +61,101 @@ class PGDP extends CI_Controller {
         $tit = array();
         $tit['page_name'] = msg('Home');
         $tit['menu'] = false;
+        $tit['login'] = false;
         $this -> cab($tit);
         $this -> load -> view('pgdp/home');
     }
-    
+
     public function main() {
+        $user_id = $this -> socials -> user_id();
+        $this -> load -> model('pgdgs');
         $tit = array();
         $tit['page_name'] = msg('Home');
         $this -> cab($tit);
-    }    
 
-    public function login() {
-        $this -> load -> model('socials');
-        $this -> cab();
-
-        $sx = $this -> socials -> action();
-
-        $this -> load -> view('social/login', null);
-
-        $data['content'] = $sx;
+        $data['title'] = msg('dashboard');
+        $data['content'] = $this -> pgdgs -> new_plan_button();
+        $data['content'] .= '<br>';
+        $data['content'] .= $this -> pgdgs -> my_plan($user_id);
         $this -> load -> view('content', $data);
     }
 
-    public function plan($id = 0, $pg = '') {
+    public function plan_new($id = '') {
         $this -> load -> model('pgdgs');
         $this -> cab();
+        $sx = '';
+        if ($id == '') {
+            $data['content'] = $this -> pgdgs -> plan_new();
+        } else {
+            $this -> pgdgs -> id = $id;
+            $this -> pgdgs -> line = array();
+            $tp = $this -> pgdgs -> le_templat($id);
+            $title = 'no_title';
+            $this -> pgdgs -> templat = $tp['id_t'];
+            $this -> pgdgs -> templat_name = $tp['t_name'];
+            $sx .= $this -> pgdgs -> plan_page_0(0);
+            $data['content'] = $sx;
+        }
+
+        $this -> load -> view('show', $data);
+    }
+
+    public function templat_new() {
+        $this -> load -> model('pgdgs');
+        $this -> cab();
+        $data['content'] = $this -> pgdgs -> templat_new();
+        $this -> load -> view('show', $data);
+    }
+
+    public function plan($pg = '', $templat = '', $new = '') {
+        $sx = '';
+        $this -> load -> model('pgdgs');
+        $this -> cab();
+        /***********************************/
+
+        $id = $this -> pgdgs -> token("recover");
+        $this -> pgdgs -> id = $id;
+        $this -> pgdgs -> line = $this -> pgdgs -> le_plan($id);
+
+        $title = $this -> pgdgs -> line['p_title'];
+        $this -> pgdgs -> templat = $this -> pgdgs -> line['p_templat'];
+        $this -> pgdgs -> templat_name = $this -> pgdgs -> line['t_name'];
+
+        $this -> pgdgs -> id = $id;
+
         switch($pg) {
             case '' :
-                $data['content'] = $this -> pgdgs -> plan_new();
+                break;
+            case '0' :
+                $sx .= $this -> pgdgs -> plan_page_0($id);
+                $data['content'] = $sx;
                 break;
             default :
                 //$data['fluid'] = true;
                 $sx = '<div class="row">' . cr();
-                $sx .= '<div class="col-md-2">';
+
+                $sx .= '<div class="col-md-12 text-center" style="border-bottom: 1px solid #000000;">';
+                $sx .= '<h1>' . $title . '</h1>';
+                $sx .= '</div>';
+                
+                $sx .= '<div class="col-md-6 text-left bg" style="border-bottom: 1px solid #000000;">';
+                if (!isset($this->pgdgs->line['id_p']))
+                {
+                    $sx .= msg('new_plan');
+                } else {
+                    $sx .= strzero($this->pgdgs->line['id_p'],8).'/'.substr($this->pgdgs->line['p_date'],0,4);    
+                }        
+                $sx .= '</div>'; 
+                $sx .= '<div class="col-md-6 text-right bg" style="border-bottom: 1px solid #000000;">';
+                $sx .= msg('templat_' . $this -> pgdgs -> templat_name);
+                $sx .= '</div>';                
+                               
+
+                $sx .= '<div class="col-md-2" style="border-right: 1px solid #808080; padding: 0px;">';
                 $sx .= $this -> pgdgs -> plan_menu($pg);
                 $sx .= '</div>' . cr();
                 $sx .= '<div class="col-md-10">';
-                $sx .= $this -> pgdgs -> plan_form($id, $pg);
+                $sx .= $this -> pgdgs -> plan_form($pg);
                 $sx .= '</div>';
                 $sx .= '</div>';
 
@@ -100,6 +166,12 @@ class PGDP extends CI_Controller {
         $this -> load -> view('show', $data);
 
         $this -> foot();
+    }
+
+    function plan_token($token) {
+        $this -> load -> model('pgdgs');
+        $this -> pgdgs -> token('set', $token);
+        redirect(base_url(PATH . 'plan/0'));
     }
 
     function plan_fields($id = '') {
@@ -116,17 +188,22 @@ class PGDP extends CI_Controller {
 
         $this -> foot();
     }
+
     /* LOGIN */
-    function social($act = '') {
+    function social($act = '', $id = '') {
+        $data = array();
+        $data['login'] = false;
         switch($act) {
+            case 'ac' :
+                $this -> socials -> ac($id);
             case 'pwsend' :
                 $this -> cab();
-                $this -> socials -> resend();
+                $this -> socials -> resend($data);
                 break;
                 break;
             case 'signup' :
                 $this -> cab();
-                $this -> socials -> signup();
+                $this -> socials -> signup($data);
                 break;
             case 'logout' :
                 $this -> socials -> logout();
@@ -160,15 +237,15 @@ class PGDP extends CI_Controller {
                 $this -> footer();
                 break;
             case 'login' :
-                $this -> cab();
+                $this -> cab($data);
                 $this -> socials -> login();
                 break;
             case 'login_local' :
-                $ok = $this -> socials -> login_local();
+                $ok = $this -> socials -> login_local($data);
                 if ($ok == 1) {
-                    redirect(base_url(PATH.'main'));
+                    redirect(base_url(PATH . 'main'));
                 } else {
-                    redirect(base_url(PATH.'social/login/') . '?erro=ERRO_DE_LOGIN');
+                    redirect(base_url(PATH . 'social/login/') . '?erro=ERRO_DE_LOGIN');
                 }
                 break;
             default :
@@ -177,38 +254,65 @@ class PGDP extends CI_Controller {
         }
     }
 
-	function config($cmd='',$id='')
-		{
-			$this->cab();
-			$sx = '';
-			switch($cmd)
-				{
-				case 'message_export':
-					$this->load->model("messages");
-					$sx = $this->messages->create();
-					break;
-				case 'message_edit':
-					$this->load->model('messages');
-					if (strlen($id) > 0)
-						{
-							$sx = $this->messages->editar($id);
-						} else {
-							$sx = $this->messages->row();		
-						}
-					
-					break;
-				default:
-					$sx = '<ul>'.cr();
-					$sx .= '<li><a href="'.base_url(PATH.'config/message_edit').'">'.msg('config_message_edit').'</a></li>'.cr();
-					$sx .= '<li><a href="'.base_url(PATH.'config/message_export').'">'.msg('config_export_message').'</a></li>'.cr();
-					$sx .= '</ul>'.cr();
-					break;
-				
-				}
-			$data['content'] = $sx;
-			$data['title'] = msg('export_message');
-			$this->load->view("content",$data);
-			$this->foot();
-		}
+    function config($cmd = '', $id = '') {
+        $this -> cab();
+        $sx = '';
+        switch($cmd) {
+            case 'message_export' :
+                $this -> load -> model("messages");
+                $sx = $this -> messages -> create();
+                break;
+            case 'message_edit' :
+                $this -> load -> model('messages');
+                if (strlen($id) > 0) {
+                    $sx = $this -> messages -> editar($id);
+                } else {
+                    $sx = $this -> messages -> row();
+                }
+
+                break;
+            default :
+                $sx = '<ul>' . cr();
+                $sx .= '<li><a href="' . base_url(PATH . 'config/message_edit') . '">' . msg('config_message_edit') . '</a></li>' . cr();
+                $sx .= '<li><a href="' . base_url(PATH . 'config/message_export') . '">' . msg('config_export_message') . '</a></li>' . cr();
+                $sx .= '</ul>' . cr();
+                break;
+        }
+        $data['content'] = $sx;
+        $data['title'] = msg('export_message');
+        $this -> load -> view("content", $data);
+        $this -> foot();
+    }
+
+    function templat($id = '') {
+        $data = array();
+        $this -> cab($data);
+        $this -> load -> model('pgdgs');
+        if ($id == '') {
+            $data['title'] = msg('templat_select');
+            $sx = $this -> pgdgs -> templats_button_new(base_url(PATH . 'templat/'));
+            $sx .= $this -> pgdgs -> templats(base_url(PATH . 'templat/'));
+
+        } else {
+            $data['title'] = msg('templat_preview');
+            $sx = $this -> pgdgs -> templats_preview($id, base_url(PATH . 'templat/' . $id));
+        }
+        $data['content'] = $sx;
+        $this -> load -> view("content", $data);
+        $this -> foot();
+    }
+
+    function about() {
+        $data = array();
+        $data['login'] = false;
+        $this -> cab($data);
+        $sx = '<div class="col-md-12">';
+        $sx .= '<img src="' . base_url('img/logo-pgdp.png') . '" align="right" height="150">';
+        $sx .= msg("text_about");
+        $sx .= '</div>';
+        $data['content'] = $sx;
+        $this -> load -> view("content", $data);
+        $this -> foot();
+    }
 
 }
