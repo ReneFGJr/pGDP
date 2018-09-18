@@ -1,4 +1,9 @@
 /****************************************************** article ***********/
+.btn-outline-secondary
+    {
+        border-color: #ffffff;
+        color: #ffffff;
+    }
 .btn-outline-primary, .btn-primary
     {
         border-color: #660033;

@@ -50,7 +50,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12 text-center">
-				<a href="<?php echo base_url("index.php/pgdp/social/login");?>"><span class="btn btn-outline-primary"><?php echo msg("create_a_dmp");?></span></a>
+				<a href="<?php echo base_url("index.php/pgdp/social/login");?>"><span class="btn btn-outline-secondary"><?php echo msg("create_a_dmp");?></span></a>
 			</div>
 		</div>
 	</div>
