@@ -20,6 +20,7 @@ class PGDP extends CI_Controller {
         $this -> load -> library('session');
         $this -> lang -> load("pgdp", "portuguese");
         $this -> lang -> load("app", "portuguese");
+        $this -> lang -> load("pgdp", "portuguese");
         date_default_timezone_set('America/Sao_Paulo');
         $this -> load -> model('socials');
     }
