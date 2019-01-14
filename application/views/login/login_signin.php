@@ -14,7 +14,7 @@
 	<div class="row">
 		<div class="col-md-4"></div>
 		<div class="col-md-4 box100">
-			<form method="post" action="<?php echo base_url(PATH.'social/login_local');?>">
+			<form method="post" action="<?php echo base_url(HTTP.'/social/login_local');?>">
 				<span class="form_title zmdi"> PGDP </span>
 				<br/>
 				<span class="login100-form-title p-b-48"> <i class="zmdi zmdi-font"><?php echo msg('dgdp_name');?></i> </span>
@@ -44,13 +44,13 @@
 
                 <br>
                 <div class="text-center p-t-115">
-                    <a class="txt2" href="<?php echo base_url(PATH.'social/forgot');?>"> Forgot Password? </a>
+                    <a class="txt2" href="<?php echo base_url('social/forgot');?>"> Forgot Password? </a>
                 </div>
                 <br>
 				<div class="text-center p-t-115">
 					<span class="txt1"> Don’t have an account? </span>
 
-					<a class="txt2" href="<?php echo base_url(PATH.'social/signup');?>"> <?php echo msg('SignUp');?> </a>
+					<a class="txt2" href="<?php echo base_url('social/signup');?>"> <?php echo msg('SignUp');?> </a>
 				</div>
 				<br>
 			</form>

@@ -11,7 +11,7 @@
     }
 </style>
 <nav class="navbar navbar-expand-lg navbar-light bg-light zmdi">
-  <a class="navbar-brand" href="<?php echo base_url(PATH . 'main'); ?>">
+  <a class="navbar-brand" href="<?php echo base_url( HTTP .'main'); ?>">
   	<table><tr>
   		<td class="logo_td">P</td>
   		<td class="logo_td">G</td>
@@ -27,10 +27,10 @@
     <ul class="navbar-nav">
       <?php if ($this->socials->user_id() > 0) { ?>        
       <li class="nav-item active">
-        <a class="nav-link" href="<?php echo base_url(PATH . 'main'); ?>"><?php echo msg('home'); ?> <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="<?php echo base_url( HTTP .'main'); ?>"><?php echo msg('home'); ?> <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="<?php echo base_url(PATH . 'plans_templat'); ?>"><?php echo msg('plans_templat'); ?></a>
+        <a class="nav-link" href="<?php echo base_url( HTTP .'plans_templat'); ?>"><?php echo msg('plans_templat'); ?></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#"><?php echo msg('help'); ?></a>
@@ -40,14 +40,14 @@
           <?php echo msg('configurations'); ?>
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="<?php echo base_url(PATH . 'templat'); ?>"><?php echo msg('config_plan_templat'); ?></a>
-          <a class="dropdown-item" href="<?php echo base_url(PATH . 'plan_fields'); ?>"><?php echo msg('config_plan_fields'); ?></a>
-          <a class="dropdown-item" href="<?php echo base_url(PATH . 'config'); ?>"><?php echo msg('config_system'); ?></a>
+          <a class="dropdown-item" href="<?php echo base_url( HTTP .'templat'); ?>"><?php echo msg('config_plan_templat'); ?></a>
+          <a class="dropdown-item" href="<?php echo base_url( HTTP .'plan_fields'); ?>"><?php echo msg('config_plan_fields'); ?></a>
+          <a class="dropdown-item" href="<?php echo base_url( HTTP .'config'); ?>"><?php echo msg('config_system'); ?></a>
         </div>
       </li>
       <?php } ?>
       <li class="nav-item">
-        <a class="nav-link" href="<?php echo base_url(PATH . 'about'); ?>"><?php echo msg('about'); ?></a>
+        <a class="nav-link" href="<?php echo base_url( HTTP .'about'); ?>"><?php echo msg('about'); ?></a>
       </li>  
       </ul>
       <ul class="navbar-nav">

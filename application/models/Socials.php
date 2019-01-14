@@ -142,7 +142,7 @@ class socials extends CI_Model {
 		$ss_perfil = $line['us_perfil'];
 		$data = array('id' => $ss_id, 'user' => $ss_user, 'email' => $ss_email, 'image' => $ss_image, 'perfil' => $ss_perfil);
 		$this -> session -> set_userdata($data);
-		redirect(base_url(PATH.'main'));
+		redirect(base_url(HTTP.'main'));
 	}
 
 	function menu_user() {
@@ -151,8 +151,8 @@ class socials extends CI_Model {
 			$sx = '
                 <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> ' . $name . ' </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="' . base_url(PATH.'social/perfil') . '">' . msg('user_perfil') . '</a>
-                    <a class="dropdown-item" href="' . base_url(PATH.'social/logout') . '">' . msg('user_logout') . '</a>
+                    <a class="dropdown-item" href="' . base_url('social/perfil') . '">' . msg('user_perfil') . '</a>
+                    <a class="dropdown-item" href="' . base_url('social/logout') . '">' . msg('user_logout') . '</a>
                 </div>                
                 ';
 		} else {
@@ -176,7 +176,7 @@ class socials extends CI_Model {
                         </button>
                       </div>
                       <div class="modal-body">
-                        <form method="post" action="' . base_url(PATH.'login') . '">
+                        <form method="post" action="' . base_url('login') . '">
                             <span>' . msg("form_user_name") . '</span><br>
                             <input type="text" name="user_login" value="' . get("user_login") . '" class="form-control">
                             <br>
@@ -504,14 +504,14 @@ class socials extends CI_Model {
 				$pass = get("user_password");
 				$ok = $this -> security_login($user, $pass);
 				if ($ok != 1) {
-					redirect(base_url('index.php/main/social/form'));
+					redirect(base_url(HTTP.'social/form'));
 				} else {
-					redirect(base_url('index.php/main'));
+					redirect(base_url(HTTP.'main'));
 				}
 				break;
 			case 'logout' :
 				$this -> logout();
-				redirect(base_url('index.php/main'));
+				redirect(base_url(HTTP.'main'));
 			default :
 				echo 'Método não implementado';
 				exit ;
@@ -599,7 +599,7 @@ class socials extends CI_Model {
 				if (($p1 == $p2) or ($new == 1)) {
 					$sql = "update " . $this -> table . " set us_password = '" . md5($p1) . "', us_autenticador = 'MD5' where id_us = " . $id;
 					$this -> db -> query($sql);
-					redirect(base_url(PATH.'social/login'));
+					redirect(base_url('social/login'));
 				} else {
 					$tela .= '<div class="alert">Senhas não conferem</div>';
 				}
@@ -627,7 +627,7 @@ class socials extends CI_Model {
 		$de = 0;
 		switch($code) {
 			case 'SIGNUP' :
-				$link = base_url(PATH.'social/npass/?dd0=' . $para . '&chk=' . checkpost_link($para . $para));
+				$link = base_url('social/npass/?dd0=' . $para . '&chk=' . checkpost_link($para . $para));
 				$assunto = 'Cadastro de novo usuários - Thesa';
 				$texto .= '<p>' . msg('Dear') . ' <b>' . $nome . ',</b></p>';
 				$texto .= '<p>Para ativar seu cadastro é necessário clicar no link abaixo:';
@@ -637,7 +637,7 @@ class socials extends CI_Model {
 				break;
 			case 'PASSWORD' :
 				$this -> le_user_id($para);
-				$link = base_url(PATH.'user_password_new/?dd0=' . $para . '&chk=' . checkpost_link($para . date("Ymd")));
+				$link = base_url('user_password_new/?dd0=' . $para . '&chk=' . checkpost_link($para . date("Ymd")));
 				$assunto = msg('Cadastro de novo senha') . ' - PGDP';
 				$texto .= '<p>' . msg('Dear') . ' ' . $this -> line['us_nome'] . '</p>';
 				$texto .= '<p>' . msg('change_new_password') . '</p>';

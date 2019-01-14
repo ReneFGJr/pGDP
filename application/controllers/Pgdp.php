@@ -3,22 +3,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class PGDP extends CI_Controller {
 
-    /**
-     * Index Page for this controller.
-     *
-     * Maps to the following URL
-     * 		http://example.com/index.php/welcome
-     *	- or -
-     * 		http://example.com/index.php/welcome/index
-     *	- or -
-     * Since this controller is set as the default controller in
-     * config/routes.php, it's displayed at http://example.com/
-     *
-     * So any other public methods not prefixed with an underscore will
-     * map to /index.php/welcome/<method_name>
-     * @see https://codeigniter.com/user_guide/general/urls.html
-     */
-
     var $line;
     var $id = 0;
     var $templat = 0;
@@ -34,6 +18,7 @@ class PGDP extends CI_Controller {
         $this -> load -> helper('bootstrap');
         $this -> load -> helper('url');
         $this -> load -> library('session');
+        $this -> lang -> load("pgdp", "portuguese");
         $this -> lang -> load("app", "portuguese");
         date_default_timezone_set('America/Sao_Paulo');
         $this -> load -> model('socials');
@@ -78,6 +63,8 @@ class PGDP extends CI_Controller {
         $data['content'] .= '<br>';
         $data['content'] .= $this -> pgdgs -> my_plan($user_id);
         $this -> load -> view('content', $data);
+        
+        $this->foot();
     }
 
     public function plan_new($id = '') {
@@ -260,9 +247,13 @@ class PGDP extends CI_Controller {
         switch($cmd) {
             case 'message_export' :
                 $this -> load -> model("messages");
-                $sx = $this -> messages -> create();
+                $sx = $this -> messages -> export();
                 break;
             case 'message_edit' :
+                $this -> load -> model('messages');
+                $sx = $this -> messages -> row($id);
+                break;
+            case 'message_editar' :
                 $this -> load -> model('messages');
                 if (strlen($id) > 0) {
                     $sx = $this -> messages -> editar($id);
