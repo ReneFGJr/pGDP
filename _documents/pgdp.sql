@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.4.1deb2ubuntu2.1
+-- version 4.5.4.1
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Sep 14, 2018 at 12:15 PM
--- Server version: 5.7.23-0ubuntu0.16.04.1
--- PHP Version: 7.0.30-0ubuntu0.16.04.1
+-- Generation Time: Mar 18, 2019 at 09:50 AM
+-- Server version: 5.7.11
+-- PHP Version: 5.6.18
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -19,6 +19,65 @@ SET time_zone = "+00:00";
 --
 -- Database: `pgdp`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `codebook`
+--
+
+CREATE TABLE `codebook` (
+  `id_cb` bigint(20) UNSIGNED NOT NULL,
+  `cb_name` char(100) NOT NULL,
+  `cb_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `cb_update` date NOT NULL,
+  `cb_own` int(11) NOT NULL,
+  `cb_pgdp` int(11) NOT NULL,
+  `cb_status` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `codebook`
+--
+
+INSERT INTO `codebook` (`id_cb`, `cb_name`, `cb_created`, `cb_update`, `cb_own`, `cb_pgdp`, `cb_status`) VALUES
+(1, 'Medições IPÊ - RNP', '2019-03-16 08:08:52', '2019-03-16', 1, 1, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `codebook_vars`
+--
+
+CREATE TABLE `codebook_vars` (
+  `id_cv` bigint(20) UNSIGNED NOT NULL,
+  `cv_codebook` int(11) NOT NULL,
+  `cv_var_name` char(50) NOT NULL,
+  `cv_var_description` text NOT NULL,
+  `cv_var_type` varchar(12) NOT NULL,
+  `cv_var_range` char(80) NOT NULL,
+  `cv_comments` text NOT NULL,
+  `cv_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `cv_order` int(11) NOT NULL DEFAULT '0',
+  `cv_ativo` int(11) NOT NULL DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `codebook_vars`
+--
+
+INSERT INTO `codebook_vars` (`id_cv`, `cv_codebook`, `cv_var_name`, `cv_var_description`, `cv_var_type`, `cv_var_range`, `cv_comments`, `cv_created`, `cv_order`, `cv_ativo`) VALUES
+(1, 1, 'Data', '', 'DateDMY', '01/01/2018-01/01/2018', '01/01/2018', '2019-03-16 13:22:27', 1, 1),
+(2, 1, 'POP_ENV', '', 'String', '---', 'PoP-AC', '2019-03-16 13:22:27', 2, 1),
+(3, 1, 'POP_DEST', '', 'String', '---', 'PoP-AL', '2019-03-16 13:22:27', 3, 1),
+(4, 1, 'PERDA_MDN', '', 'Numeric', '0-100', '0', '2019-03-16 13:22:27', 4, 1),
+(5, 1, 'LAT_MIN', '', 'Numeric', '3.136-133.365', '89.407', '2019-03-16 13:22:27', 5, 1),
+(6, 1, 'LAT_MED', '', 'Numeric', '3.34750530035336-155.83954887218', '89.8915234375', '2019-03-16 13:22:27', 6, 1),
+(7, 1, 'LAT_MAX', '', 'Numeric', '4.026-990.420', '129.040', '2019-03-16 13:22:27', 7, 1),
+(8, 1, 'STD_DVN', '', 'Numeric', '0.0108126958321545-70.5862567069058', '2.66867035546057', '2019-03-16 13:22:27', 8, 1),
+(9, 1, 'LAT_10_PERC', '', 'Numeric', '3.217-137.288', '89.527', '2019-03-16 13:22:27', 9, 1),
+(10, 1, 'LAT_MDN', '', 'Numeric', '3.280-160.8285', '89.5895', '2019-03-16 13:22:27', 10, 1),
+(11, 1, 'LAT_90_PERC', '', 'Numeric', '3.376-209.274', '89.678', '2019-03-16 13:22:27', 11, 1);
 
 -- --------------------------------------------------------
 
@@ -107,6 +166,25 @@ INSERT INTO `dcr_groups` (`id_d`, `d_descript`, `d_order`, `d_active`) VALUES
 (4, 'group_project_team', 4, 1),
 (5, 'group_disclaimer', 5, 1),
 (6, 'group_export', 6, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `dcr_plans`
+--
+
+CREATE TABLE `dcr_plans` (
+  `id_p` bigint(20) UNSIGNED NOT NULL,
+  `p_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `p_update` date DEFAULT NULL,
+  `p_user` int(11) DEFAULT NULL,
+  `p_templat` int(11) DEFAULT NULL,
+  `p_test` int(11) DEFAULT '0',
+  `p_visibility` int(11) DEFAULT '0',
+  `p_status` int(11) DEFAULT '1',
+  `p_shared` int(11) NOT NULL DEFAULT '0',
+  `p_title` text NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -319,9 +397,99 @@ INSERT INTO `users` (`id_us`, `us_nome`, `us_email`, `us_cidade`, `us_pais`, `us
 (505, 'Ketlyn Santiago Borges', 'ketlynsantiago@hotmail.com', '', '', '', '', 1, '', '', '', '', 'MD5', 0, 0, 0, 0, 0, 0, 0, 0, '', 'ketlynsantiago@hotmail.com', '52b8bb6e682633b0d26d8434a9a80990', '2018-06-25 17:28:00', '0000-00-00 00:00:00', 'Universidade Federal de Minas Gerais', 0, '00505'),
 (506, 'DEBORA DORNSBACH SOARES', 'debora.soares@al.rs.gov.br', '', '', '', '', 1, '', '', '', '', 'MD5', 0, 0, 0, 0, 0, 0, 0, 0, '', 'debora.soares@al.rs.gov.br', '39f37359bf7dd3bdc317e0c2573961cd', '2018-06-27 15:32:59', '0000-00-00 00:00:00', 'Assembleia Legislativa do Estado do RS', 0, '00506');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `_messages`
+--
+
+CREATE TABLE `_messages` (
+  `id_msg` bigint(20) UNSIGNED NOT NULL,
+  `msg_pag` text,
+  `msg_language` char(5) NOT NULL,
+  `msg_field` char(60) NOT NULL,
+  `msg_content` text NOT NULL,
+  `msg_ativo` int(11) NOT NULL,
+  `msg_update` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `_messages`
+--
+
+INSERT INTO `_messages` (`id_msg`, `msg_pag`, `msg_language`, `msg_field`, `msg_content`, `msg_ativo`, `msg_update`) VALUES
+(8734, NULL, 'pt-BR', 'home', 'home', 1, 20190316),
+(8735, NULL, 'pt-BR', 'plans_templat', 'plans_templat', 1, 20190316),
+(8736, NULL, 'pt-BR', 'help', 'help', 1, 20190316),
+(8737, NULL, 'pt-BR', 'configurations', 'configurations', 1, 20190316),
+(8738, NULL, 'pt-BR', 'config_plan_templat', 'config_plan_templat', 1, 20190316),
+(8739, NULL, 'pt-BR', 'config_plan_fields', 'config_plan_fields', 1, 20190316),
+(8740, NULL, 'pt-BR', 'config_system', 'config_system', 1, 20190316),
+(8741, NULL, 'pt-BR', 'about', 'sobre', 1, 20190316),
+(8742, NULL, 'pt-BR', 'user_perfil', 'user_perfil', 1, 20190316),
+(8743, NULL, 'pt-BR', 'user_logout', 'user_logout', 1, 20190316),
+(8744, NULL, 'pt-BR', 'dashboard', 'dashboard', 1, 20190316),
+(8745, NULL, 'pt-BR', 'new_plan', 'new_plan', 1, 20190316),
+(8746, NULL, 'pt-BR', 'p_title', 'p_title', 1, 20190316),
+(8747, NULL, 'pt-BR', 'p_templat', 'p_templat', 1, 20190316),
+(8748, NULL, 'pt-BR', 'p_update', 'p_update', 1, 20190316),
+(8749, NULL, 'pt-BR', 'p_test', 'p_test', 1, 20190316),
+(8750, NULL, 'pt-BR', 'p_visibility', 'p_visibility', 1, 20190316),
+(8751, NULL, 'pt-BR', 'p_shared', 'p_shared', 1, 20190316),
+(8752, NULL, 'pt-BR', 'p_status', 'p_status', 1, 20190316),
+(8753, NULL, 'pt-BR', 'not_plan', 'not_plan', 1, 20190316),
+(8754, NULL, 'pt-BR', 'config_message_edit', 'config_message_edit', 1, 20190316),
+(8755, NULL, 'pt-BR', 'config_export_message', 'config_export_message', 1, 20190316),
+(8756, NULL, 'pt-BR', 'export_message', 'export_message', 1, 20190316),
+(8757, NULL, 'pt-BR', 'msg_field', 'msg_field', 1, 20190316),
+(8758, NULL, 'pt-BR', 'msg_content', 'msg_content', 1, 20190316),
+(8759, NULL, 'pt-BR', 'msg_language', 'msg_language', 1, 20190316),
+(8760, NULL, 'pt-BR', 'bt_search', 'bt_search', 1, 20190316),
+(8761, NULL, 'pt-BR', 'bt_clear', 'bt_clear', 1, 20190316),
+(8762, NULL, 'pt-BR', 'action', 'action', 1, 20190316),
+(8763, NULL, 'pt-BR', '[ed]', '[ed]', 1, 20190316),
+(8764, NULL, 'pt-BR', 'filtro', 'filtro', 1, 20190316),
+(8765, NULL, 'pt-BR', 'bt_new', 'bt_new', 1, 20190316),
+(8766, NULL, 'pt-BR', 'page_ref', 'page_ref', 1, 20190316),
+(8767, NULL, 'pt-BR', 'submit', 'submit', 1, 20190316),
+(8768, NULL, 'pt-BR', 'codebook', 'codebook', 1, 20190316),
+(8769, NULL, 'pt-BR', 'CB_NAME', 'CB_NAME', 1, 20190316),
+(8770, NULL, 'pt-BR', 'CB_CREATED', 'CB_CREATED', 1, 20190316),
+(8771, NULL, 'pt-BR', 'CB_UPDATE', 'CB_UPDATE', 1, 20190316),
+(8772, NULL, 'pt-BR', 'create_a_dmp', 'create_a_dmp', 1, 20190316),
+(8773, NULL, 'pt-BR', 'sign_in', 'sign_in', 1, 20190316),
+(8774, NULL, 'pt-BR', 'user_login', 'user_login', 1, 20190316),
+(8775, NULL, 'pt-BR', 'form_user_name', 'form_user_name', 1, 20190316),
+(8776, NULL, 'pt-BR', 'form_user_password', 'form_user_password', 1, 20190316),
+(8777, NULL, 'pt-BR', 'cancel', 'cancel', 1, 20190316),
+(8778, NULL, 'pt-BR', 'dgdp_name', 'dgdp_name', 1, 20190316),
+(8779, NULL, 'pt-BR', 'SignIn', 'SignIn', 1, 20190316),
+(8780, NULL, 'pt-BR', 'e-mail', 'e-mail', 1, 20190316),
+(8781, NULL, 'pt-BR', 'password', 'password', 1, 20190316),
+(8782, NULL, 'pt-BR', 'SignUp', 'SignUp', 1, 20190316),
+(8783, NULL, 'pt-BR', 'code_name', 'code_name', 1, 20190316),
+(8784, NULL, 'pt-BR', 'cv_order', 'cv_order', 1, 20190316),
+(8785, NULL, 'pt-BR', 'cv_var_name', 'cv_var_name', 1, 20190316),
+(8786, NULL, 'pt-BR', 'cv_var_description', 'cv_var_description', 1, 20190316),
+(8787, NULL, 'pt-BR', 'cv_var_type', 'cv_var_type', 1, 20190316),
+(8788, NULL, 'pt-BR', 'cv_var_range', 'cv_var_range', 1, 20190316),
+(8789, NULL, 'pt-BR', 'cv_comments', 'cv_comments', 1, 20190316);
+
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `codebook`
+--
+ALTER TABLE `codebook`
+  ADD UNIQUE KEY `id_cb` (`id_cb`);
+
+--
+-- Indexes for table `codebook_vars`
+--
+ALTER TABLE `codebook_vars`
+  ADD UNIQUE KEY `id_cv` (`id_cv`);
 
 --
 -- Indexes for table `dcr_fields`
@@ -342,6 +510,12 @@ ALTER TABLE `dcr_groups`
   ADD UNIQUE KEY `id_d` (`id_d`);
 
 --
+-- Indexes for table `dcr_plans`
+--
+ALTER TABLE `dcr_plans`
+  ADD UNIQUE KEY `id_p` (`id_p`);
+
+--
 -- Indexes for table `dcr_templat`
 --
 ALTER TABLE `dcr_templat`
@@ -360,9 +534,25 @@ ALTER TABLE `users`
   ADD UNIQUE KEY `id_us` (`id_us`);
 
 --
+-- Indexes for table `_messages`
+--
+ALTER TABLE `_messages`
+  ADD UNIQUE KEY `id_msg` (`id_msg`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
+--
+-- AUTO_INCREMENT for table `codebook`
+--
+ALTER TABLE `codebook`
+  MODIFY `id_cb` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `codebook_vars`
+--
+ALTER TABLE `codebook_vars`
+  MODIFY `id_cv` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `dcr_fields`
 --
@@ -379,6 +569,11 @@ ALTER TABLE `dcr_form`
 ALTER TABLE `dcr_groups`
   MODIFY `id_d` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
+-- AUTO_INCREMENT for table `dcr_plans`
+--
+ALTER TABLE `dcr_plans`
+  MODIFY `id_p` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT for table `dcr_templat`
 --
 ALTER TABLE `dcr_templat`
@@ -393,6 +588,11 @@ ALTER TABLE `sections`
 --
 ALTER TABLE `users`
   MODIFY `id_us` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=507;
+--
+-- AUTO_INCREMENT for table `_messages`
+--
+ALTER TABLE `_messages`
+  MODIFY `id_msg` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8790;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

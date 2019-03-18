@@ -94,6 +94,26 @@ class PGDP extends CI_Controller {
         $data['content'] = $this -> pgdgs -> templat_new();
         $this -> load -> view('show', $data);
     }
+    
+    public function codebook($act='',$id='')
+        {
+            $this->load->model("codebooks");
+            $this->cab();
+            switch($act)
+                {            
+                case 'view':
+                    $tela = $this->codebooks->view($id);
+                    break;
+                default:
+                    $tela = $this->codebooks->row();        
+                    break;
+                }
+            
+            
+            $data['content'] = $tela;
+            $this->load->view('show',$data);
+            $this->foot();
+        }
 
     public function plan($pg = '', $templat = '', $new = '') {
         $sx = '';

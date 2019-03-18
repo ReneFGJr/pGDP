@@ -13,7 +13,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light zmdi">
   <a class="navbar-brand" href="<?php echo base_url( HTTP .'main'); ?>">
   	<table><tr>
-  		<td class="logo_td">P</td>
+  		<td class="logo_td">#</td>
   		<td class="logo_td">G</td>
   		<td class="logo_td">D</td>
   		<td class="logo_td">P</td>
@@ -32,6 +32,9 @@
       <li class="nav-item">
         <a class="nav-link" href="<?php echo base_url( HTTP .'plans_templat'); ?>"><?php echo msg('plans_templat'); ?></a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<?php echo base_url( HTTP .'codebook'); ?>"><?php echo msg('codebook'); ?></a>
+      </li>      
       <li class="nav-item">
         <a class="nav-link" href="#"><?php echo msg('help'); ?></a>
       </li>

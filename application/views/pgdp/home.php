@@ -34,13 +34,13 @@
 			<div class="col-md-12 text-center">
 				<table align="center" class="pgdp" >
 					<tr>
-						<td class="pgdp_td">P</td>
-						<td class="pgdp_td">G</td>
-						<td class="pgdp_td">D</td>
-						<td class="pgdp_td">P</td>
+					    <td class="pgdp_td" width="25%">#</td>
+						<td class="pgdp_td" width="25%">G</td>
+						<td class="pgdp_td" width="25%">D</td>
+						<td class="pgdp_td" width="25%">P</td>
 					</tr>
 					<tr>
-						<td colspan=4 style="font-size: 200%;">Plano de Gestão de Dados de Pesquisa</td>
+						<td colspan=4 style="font-size: 200%;">Gestão de Dados de Pesquisa</td>
 					</tr>
 				</table>
 			</div>

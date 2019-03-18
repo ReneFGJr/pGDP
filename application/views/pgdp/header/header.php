@@ -32,6 +32,7 @@ if (!isset($title)) { $title = 'no title';
     <link href="<?php echo base_url('css/style.css?v0.3'); ?>" rel="stylesheet">
     <link href="<?php echo base_url('css/jquery-ui.css?v1.12.1'); ?>" rel="stylesheet">
     <link href="<?php echo base_url('css/style_form_sisdoc.css?v1.12.1'); ?>" rel="stylesheet">
+    <link rel="stylesheet" href="<?php echo base_url('css/jquery.dataTables.min.css');?>">
     
     
     <!--- JS ---->
@@ -41,6 +42,7 @@ if (!isset($title)) { $title = 'no title';
     <script src="<?php echo base_url('js/bootstrap.min.js?v4.0'); ?>"></script>
     <script src="<?php echo base_url('js/jquery-ui.js?v1.12.1'); ?>"></script>
     <script src="<?php echo base_url('js/sisdoc_form.js?v1.1.1'); ?>"></script>
+    <script type="text/javascript" src="<?php echo base_url('js/jquery.dataTables.min.js');?>"></script>
 <!---    
 <script>
     (function(i, s, o, g, r, a, m) {
