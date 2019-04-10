@@ -326,5 +326,21 @@ class PGDP extends CI_Controller {
         $this -> load -> view("content", $data);
         $this -> foot();
     }
+    
+    function institutions()
+        {
+            $this->load->model('pgdps');
+        $data = array();
+        $data['login'] = false;
+        $this -> cab($data);
+        $sx = '<div class="col-md-12">';
+        $sx .= msg("Institutions");
+        $sx .= $this->pgdps->institutions();
+        $sx .= '</div>';
+        $data['content'] = $sx;
+        
+        $this -> load -> view("content", $data);
+        $this -> foot();   
+        }
 
 }

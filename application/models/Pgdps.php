@@ -1,6 +1,30 @@
 <?php
 class pgdps extends CI_model
     {
+    function institutions_import($id=0)
+        {
+            $s = 'https://www.ufrgs.br/tesauros/index.php/thesa/terms_from_to/8/xml';    
+        }
+    function institutions($id=0)
+        {
+        
+        $form = new form;
+
+        $form -> fd = array('id_inst', 'inst_name', 'inst_sigla');
+        $form -> lb = array('id', msg('inst_name'), msg('inst_sigla'));
+        $form -> mk = array('', 'L', 'L', 'L');
+
+        $form -> tabela = 'instituitions';
+        $form -> see = false;
+        $form -> novo = true;
+        $form -> edit = true;
+
+        $form -> row_edit = base_url('index.php/admin/user_edit');
+        $form -> row_view = base_url('index.php/admin/user');
+        $form -> row = base_url('index.php/admin/users');
+
+        return (row($form, $id));           
+        }
     function le($id=0)
         {
             $sql = "select * from pgdp_plans

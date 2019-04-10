@@ -9,7 +9,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @category    Helpers
  * @author      Rene F. Gabriel Junior <renefgj@gmail.com>
  * @link        http://www.sisdoc.com.br/CodIgniter
- * @version     v0.19.03.16
+ * @version     v0.19.03.29
  */
 
 /* 2017-12-21 function read_link($url) */
@@ -1218,25 +1218,6 @@ if (!function_exists('form_edit')) {
      * @paramrter $id - chave primaria do registro
      * @parameter $data - Dados do post inserir no controler: $data = $this->input->post();
      */
-     
-    function row2($obj, $pag = 1)
-        {
-            $sx = row($obj,$pag);
-            $sx .= '
-            <script>
-                $(document).ready( function () {
-                    $(\'#row\').DataTable();
-                } );
-            </script>
-            <style>
-                #row_wrapper
-                    {
-                        width: 100%;
-                    }
-            </style>
-            ';
-            return($sx);            
-        }     
 
     function row($obj, $pag = 1) {
         $page = page();
@@ -1481,7 +1462,7 @@ if (!function_exists('form_edit')) {
             }
             if ($obj -> edit == True) {
                 $idr = trim($row[$fd[0]]);
-                $data .= '<td width="1%" align="center"><A HREF="' . $obj -> row_edit . '/' . $idr . '/' . checkpost_link($idr) . '"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></td>';
+                $data .= '<td width="1%" align="center"><A HREF="' . $obj -> row_edit . '/' . $idr . '/' . checkpost_link($idr) . '"><span class="glyphicon glyphicon-pencil" aria-hidden="true">[ed]</span></td>';
             }
             $data .= '</tr>' . chr(13) . chr(10);
         }
@@ -1489,7 +1470,7 @@ if (!function_exists('form_edit')) {
         /* Tela completa */
         $tela = '<table width="100%" class="table" id="row">';
         $tela .= $sh;
-        $tela .= '<tbody>'.$data.'</tbody>';
+        $tela .= $data;
         $tela .= '<tr><th colspan=10 align="left">Total ' . $total . ' de registros' . '</th></tr>';
         $tela .= '</table>';
 
