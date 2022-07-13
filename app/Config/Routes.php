@@ -46,6 +46,8 @@ $routes->get('/pgdp/(:any)', 'Pgcd::index/$1');
 $routes->post('/pgdp/(:any)', 'Pgcd::index/$1');
 $routes->get('/plans/(:any)', 'Pgcd::index/plans/$1');
 $routes->post('/plans/(:any)', 'Pgcd::index/plans/$1');
+$routes->get('/plans/(:any)/(:any)', 'Pgcd::index/plans/$1/$2');
+$routes->post('/plans/(:any)/(:any)', 'Pgcd::index/plans/$1/$2');
 
 /********* AJAX */
 $routes->get('/ajax/(:any)', 'Ajax::index/$1');
