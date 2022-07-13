@@ -46,7 +46,7 @@ class Plans extends Model
 
 	function plans_list($user = 1)
 	{
-		$sx = h(lang('pgcd.list_plans'), 4);
+		$sx = bs(bsc(h(lang('pgcd.list_plans'), 4), 12));
 		$dt = $this->where('p_own', $user)
 			->orderBy('created_at desc')
 			->findall();
@@ -66,7 +66,7 @@ class Plans extends Model
 				break;
 			case 'view':
 				$sx .= $this->view($id);
-				break;				
+				break;
 			case 'edit':
 				$sx .= $this->edit($id);
 				break;
@@ -120,10 +120,13 @@ class Plans extends Model
 	{
 		$PlansForm = new \App\Models\PGCD\PlansForm();
 		$tab = round(get("pag"));
+		if ($tab < 1) {
+			$tab = 1;
+		}
 		$data = $this->find($id);
 		$data['form_id'] = 1;
-		$data['tabPage'] = $tab;	
-		
+		$data['tabPage'] = $tab;
+
 		$sx = '';
 		$sx .= breadcrumbs();
 
@@ -131,7 +134,7 @@ class Plans extends Model
 		$sx .= view('PGCD/Pages/Plans/plans_00_tabs');
 
 		/************************************* FORM */
-		$sx .= $PlansForm->form($id,$tab);
+		$sx .= $PlansForm->form($id, $tab);
 
 		return $sx;
 	}

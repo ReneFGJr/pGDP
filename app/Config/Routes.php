@@ -41,13 +41,10 @@ $routes->get('/', 'Pgcd::index');
 $routes->post('/', 'Pgcd::index');
 
 /********* PGCD */
-$routes->get('/pgdp/', 'Pgcd::index/');
-$routes->get('/pgdp/(:any)', 'Pgcd::index/$1');
-$routes->post('/pgdp/(:any)', 'Pgcd::index/$1');
-$routes->get('/plans/(:any)', 'Pgcd::index/plans/$1');
-$routes->post('/plans/(:any)', 'Pgcd::index/plans/$1');
-$routes->get('/plans/(:any)/(:any)', 'Pgcd::index/plans/$1/$2');
-$routes->post('/plans/(:any)/(:any)', 'Pgcd::index/plans/$1/$2');
+$routes->get('/pgcd/', 'Pgcd::index/');
+$routes->get('/pgcd/(:any)', 'Pgcd::index/$1');
+$routes->post('/pgcd/(:any)', 'Pgcd::index/$1');
+
 
 /********* AJAX */
 $routes->get('/ajax/(:any)', 'Ajax::index/$1');

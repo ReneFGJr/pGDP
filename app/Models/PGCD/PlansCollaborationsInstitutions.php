@@ -4,17 +4,19 @@ namespace App\Models\PGCD;
 
 use CodeIgniter\Model;
 
-class PlansForm extends Model
+class PlansCollaborationsInstitutions extends Model
 {
 	protected $DBGroup              = 'pgcd';
-	protected $table                = 'plan_form';
-	protected $primaryKey           = 'id_pf';
+	protected $table                = 'plan_form_institution';
+	protected $primaryKey           = 'id_pfi';
 	protected $useAutoIncrement     = true;
 	protected $insertID             = 0;
 	protected $returnType           = 'array';
 	protected $useSoftDeletes       = false;
 	protected $protectFields        = true;
-	protected $allowedFields        = [];
+	protected $allowedFields        = [
+		'id_pfi', 'pfi_nr', 'pfi_emailidentify',
+	];
 
 	// Dates
 	protected $useTimestamps        = false;
@@ -40,33 +42,34 @@ class PlansForm extends Model
 	protected $beforeDelete         = [];
 	protected $afterDelete          = [];
 
-	function index()
+	function invitation($id)
 	{
+		$sx = '';
+		$data['id_p'] = $id;
+		$sx .= view('PGCD/Pages/Plans/plans_20_colaborations_invitation', $data);
+		return $sx;
 	}
 
-	function form($pr, $tab)
+	function list($id)
 	{
-		$Plans = new \App\Models\PGCD\Plans();
-		$dt = $Plans->find($pr);
-
-		$form = $dt['p_form'];
-
 		$dt = $this
-			//->select('pf_acronic, pf_name')
-			->join('plan_form_fields', 'plf_plan_id = id_pf')
-			->join('plan_form_section', 'plf_plan_section = id_pfs')
-			->join('plan_form_values', 'pv_field = id_plf', 'left')
-			->where('id_pf', $form)
-			->where('id_pfs', $tab)
-			->orderBy('plf_ord')
+			->where('pfi_nr', $id)
+			->orderby('pfi_order')
 			->findAll();
 
-		$sx = '';
+		$sx = '<table class="table pgcd_table" style="border: 1px solid #000;">';
+		$sx .= '<tr class="pgcd_table_th">';
+		$sx .= '<th class="pgcd_table_th" width="5%">' . lang('pgcd.order') . '</th>';
+		$sx .= '<th class="pgcd_table_th" width="95%">' . lang('pgcd.institution') . '</th>';
+		$sx .= '</tr>';
+
 		for ($r = 0; $r < count($dt); $r++) {
-			$data = $dt[$r];
-			$view = 'PGCD/Forms/' . strtolower($data['plf_type']);
-			$sx .= view($view, $data);
 		}
+		if (count($dt) == 0) {
+			$sx .= '<tr><td colspan=6">' . lang('pgcd.collaboration_not_locate') . '</td></tr>' . cr();
+		}
+		$sx .= '</table>';
+
 		return $sx;
 	}
 }
