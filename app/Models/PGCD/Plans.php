@@ -48,6 +48,7 @@ class Plans extends Model
 	{
 		$sx = bs(bsc(h(lang('pgcd.list_plans'), 4), 12));
 		$dt = $this->where('p_own', $user)
+			->join('plan_form', 'id_pf = p_form')
 			->orderBy('created_at desc')
 			->findall();
 		$dt['plans'] = $dt;
@@ -124,13 +125,14 @@ class Plans extends Model
 			$tab = 1;
 		}
 		$data = $this->find($id);
-		$data['form_id'] = 1;
+		$data['form_id'] = $data['p_form'];
 		$data['tabPage'] = $tab;
 
 		$sx = '';
 		$sx .= breadcrumbs();
 
 		$sx .= view('PGCD/Pages/Plans/plans_02_id', $data);
+
 		$sx .= view('PGCD/Pages/Plans/plans_00_tabs');
 
 		/************************************* FORM */

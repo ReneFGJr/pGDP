@@ -17,7 +17,7 @@ if (!isset($this->collaboration_inst)) {
                 echo $PlansCollaborationsInstitutions->list($id_p);
 
                 $data['id_p'] = $id_p;
-                echo view("PGCD/Forms/collaborations_authors_invitation", $data);
+                //echo view("PGCD/Forms/collaborations_authors_invitation", $data);
                 ?>
         </div>
     </div>
