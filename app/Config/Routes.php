@@ -41,6 +41,12 @@ $routes->get('/index.php/maDMP', 'maDMP::index');
 $routes->get('/pgcd/(:any)', 'maDMP::index/$1');
 $routes->get('/index.php/pgcd', 'maDMP::index');
 
+$routes->get('/maDMP/(:any)', 'maDMP::index/$1');
+$routes->get('/maDMP/(:any)/(:any)', 'maDMP::index/$1/$2');
+$routes->post('/maDMP/(:any)', 'maDMP::index/$1');
+$routes->post('/maDMP/(:any)/(:any)', 'maDMP::index/$1/$2');
+$routes->get('/index.php/maDMP', 'maDMP::index');
+
 
 
 
