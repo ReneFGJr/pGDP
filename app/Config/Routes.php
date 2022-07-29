@@ -17,7 +17,7 @@ if (is_file(SYSTEMPATH . 'Config/Routes.php')) {
  * --------------------------------------------------------------------
  */
 $routes->setDefaultNamespace('App\Controllers');
-$routes->setDefaultController('Main');
+$routes->setDefaultController('maDMP');
 $routes->setDefaultMethod('index');
 $routes->setTranslateURIDashes(false);
 $routes->set404Override();
@@ -35,36 +35,14 @@ $routes->set404Override();
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
+$routes->get('/', 'maDMP::index');
+$routes->get('/index.php/maDMP', 'maDMP::index');
 
-/********** DEFAULT */
-$routes->get('/', 'Pgcd::index');
-$routes->post('/', 'Pgcd::index');
-
-/********* PGCD */
-$routes->get('/pgcd/', 'Pgcd::index/');
-$routes->get('/pgcd/(:any)', 'Pgcd::index/$1');
-$routes->post('/pgcd/(:any)', 'Pgcd::index/$1');
+$routes->get('/pgcd/(:any)', 'maDMP::index/$1');
+$routes->get('/index.php/pgcd', 'maDMP::index');
 
 
-/********* AJAX */
-$routes->get('/ajax/(:any)', 'Ajax::index/$1');
-$routes->post('/ajax/(:any)', 'Ajax::index/$1');
 
-/********* SOCIAL */
-$routes->get('/social', 'Social::index');
-$routes->post('/social/ajax/(:any)', 'Social::ajax/$1');
-$routes->get('/social/(:any)', 'Social::index/$1');
-$routes->post('/social/(:any)', 'Social::index/$1');
-
-/********* POPUP */
-$routes->get('/popup/(:any)', 'Popup::index/$1');
-$routes->post('/popup/(:any)', 'Popup::index/$1');
-
-/********** Others */
-//$routes->get('(:any)', 'MainPages::index/$1');
-$routes->get('(:any)', 'Pgcd::index/$1');
-$routes->get('(:any)/(:any)', 'MainPagesPgcd::index/$1/$2');
-$routes->get('(:any)/(:any)/(:any)', 'MainPagesPgcd::index/$1/$2/$3');
 
 
 /*
