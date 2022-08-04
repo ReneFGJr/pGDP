@@ -5,7 +5,7 @@ if (!isset($this->collaboration)) {
 ?>
 <div class="container mt-3">
     <div class="row">
-        <div class="col-8"><h4 class="pgcd_h"><?=lang('pgcd.'.trim($plf_field));?></h4></div>
+        <div class="col-8"><h4 class="pgcd_h"><?=lang('ma_dmp.'.trim($plf_field));?></h4></div>
     </div>
     <div class="row">
         <div class="col-8">
@@ -17,7 +17,7 @@ if (!isset($this->collaboration)) {
             echo view("PGCD/Forms/collaborations_authors_invitation",$data);
             ?>
         </div>
-    </div>    
+    </div>
 </div>
 <?php
 

@@ -47,6 +47,9 @@ $routes->post('/maDMP/(:any)', 'maDMP::index/$1');
 $routes->post('/maDMP/(:any)/(:any)', 'maDMP::index/$1/$2');
 $routes->get('/index.php/maDMP', 'maDMP::index');
 
+$routes->get('/admin/(:any)/(:any)', 'maDMP::index/$1/$2');
+$routes->get('/admin/', 'maDMP::index/admin');
+
 
 
 

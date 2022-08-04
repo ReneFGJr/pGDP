@@ -46,7 +46,7 @@ class Plans extends Model
 
 	function plans_list($user = 1)
 	{
-		$sx = bs(bsc(h(lang('pgcd.list_plans'), 4), 12));
+		$sx = bs(bsc(h(lang('ma_dmp.list_plans'), 4), 12));
 		$dt = $this->where('p_own', $user)
 			->join('plan_form', 'id_pf = p_form')
 			->orderBy('created_at desc')
@@ -88,7 +88,7 @@ class Plans extends Model
 		if ($plan = $this->plan_new_save()) {
 			redirect('Pgcd::index/plans');
 		}
-		$data['plan_nr'] = lang('pgcd.plan_new');
+		$data['plan_nr'] = lang('ma_dmp.plan_new');
 		$sx .= view('PGCD/Pages/Plans/plans_00_form_open', $data);
 		$sx .= view('PGCD/Pages/Plans/plans_01_plan_new', $data);
 		$sx .= view('PGCD/Pages/Plans/plans_02_id', $data);

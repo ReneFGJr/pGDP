@@ -12,13 +12,13 @@
 
         <td width="40%" class="p-4">
             Perfil <span class="text-danger" id="perfil_validate" style="color: red;">*</span><br><br>
-            <input type="radio" id="ajax_perfil" name="ajax_prefil" value="1"> <?= lang("pgcd.perfil_1"); ?><br>
-            <input type="radio" id="ajax_perfil" name="ajax_prefil" value="2"> <?= lang("pgcd.perfil_2"); ?><br>
-            <input type="radio" id="ajax_perfil" name="ajax_prefil" value="4"> <?= lang("pgcd.perfil_4"); ?><br>
+            <input type="radio" id="ajax_perfil" name="ajax_prefil" value="1"> <?= lang("ma_dmp.perfil_1"); ?><br>
+            <input type="radio" id="ajax_perfil" name="ajax_prefil" value="2"> <?= lang("ma_dmp.perfil_2"); ?><br>
+            <input type="radio" id="ajax_perfil" name="ajax_prefil" value="4"> <?= lang("ma_dmp.perfil_4"); ?><br>
         </td>
     </tr>
 </table>
-<input type="button" onclick="invite();" value="<?= lang('pgcd.send_invitation'); ?>" class="btn btn-primary mt-3">
+<input type="button" onclick="invite();" value="<?= lang('ma_dmp.send_invitation'); ?>" class="btn btn-primary mt-3">
 
 
 <script>

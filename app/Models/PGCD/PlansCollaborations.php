@@ -60,11 +60,11 @@ class PlansCollaborations extends Model
 
 				$sx = '<table class="table pgcd_table" style="border: 1px solid #000;">';
 				$sx .= '<tr class="pgcd_table_th">';
-				$sx .= '<th class="pgcd_table_th" width="5%">'.lang('pgcd.order').'</th>';
-				$sx .= '<th class="pgcd_table_th" width="35%">'.lang('pgcd.email').'</th>';
-				$sx .= '<th class="pgcd_table_th" width="35%">'.lang('pgcd.name').'</th>';
-				$sx .= '<th class="pgcd_table_th" width="20%">'.lang('pgcd.status').'</th>';
-				$sx .= '<th class="pgcd_table_th" width="20%">'.lang('pgcd.action').'</th>';
+				$sx .= '<th class="pgcd_table_th" width="5%">'.lang('ma_dmp.order').'</th>';
+				$sx .= '<th class="pgcd_table_th" width="35%">'.lang('ma_dmp.email').'</th>';
+				$sx .= '<th class="pgcd_table_th" width="35%">'.lang('ma_dmp.name').'</th>';
+				$sx .= '<th class="pgcd_table_th" width="20%">'.lang('ma_dmp.status').'</th>';
+				$sx .= '<th class="pgcd_table_th" width="20%">'.lang('ma_dmp.action').'</th>';
 				$sx .= '</tr>';
 
 				for ($r=0;$r < count($dt);$r++)
@@ -73,7 +73,7 @@ class PlansCollaborations extends Model
 					}
 				if (count($dt) == 0)
 					{
-						$sx .= '<tr><td colspan=6">'.lang('pgcd.collaboration_not_locate').'</td></tr>'.cr();
+						$sx .= '<tr><td colspan=6">'.lang('ma_dmp.collaboration_not_locate').'</td></tr>'.cr();
 					}
 				$sx .= '</table>';
 

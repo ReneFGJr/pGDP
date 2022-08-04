@@ -8,7 +8,7 @@ if (!isset($this->form_keywords)) {
 ?>
 <div class="container mt-3">
     <div class="row">
-        <div class="col-8"><h4 class="pgcd_h"><?=lang('pgcd.'.$plf_field);?></h4></div>
+        <div class="col-8"><h4 class="pgcd_h"><?=lang('ma_dmp.'.$plf_field);?></h4></div>
     </div>
 </div>
 <?php

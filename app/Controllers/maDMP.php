@@ -26,6 +26,10 @@ class maDMP extends BaseController
         $sx .= view('PGCD/Headers/header', $data);
         $sx .= view('PGCD/Headers/navbar', $data);
         switch ($act) {
+            case 'admin':
+                $Admin = new \App\Models\PGCD\Admin();
+                $sx .= $Admin->index($subact, $id);
+                break;
             case 'plans':
                 $Plans = new \App\Models\PGCD\Plans();
                 $sx .= $Plans->index($subact, $id);

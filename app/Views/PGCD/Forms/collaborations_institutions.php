@@ -7,7 +7,7 @@ if (!isset($this->collaboration_inst)) {
 <div class="container mt-3">
     <div class="row">
         <div class="col-8">
-            <h4 class="pgcd_h"><?= lang('pgcd.' . trim($plf_field)); ?></h4>
+            <h4 class="pgcd_h"><?= lang('ma_dmp.' . trim($plf_field)); ?></h4>
         </div>
     </div>
     <div class="row">

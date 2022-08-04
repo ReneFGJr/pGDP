@@ -3,18 +3,18 @@
         <div class="col-12">
             <table class="table pgcd_table">
                 <tr class="pgcd_table_th">
-                    <th class="pgcd_table_th" width="5%"><?= lang('pgcd.p_nr'); ?></th>
-                    <th class="pgcd_table_th" width="60%"><?= lang('pgcd.p_title'); ?></th>
-                    <th class="pgcd_table_th" width="10%"><?= lang('pgcd.p_form'); ?></th>
-                    <th class="pgcd_table_th" width="10%"><?= lang('pgcd.p_version'); ?></th>
-                    <th class="pgcd_table_th" width="10%"><?= lang('pgcd.updated_at'); ?></th>
-                    <th class="pgcd_table_th" width="10%"><?= lang('pgcd.p_status'); ?></th>
-                    <th class="pgcd_table_th" colspan=4><?= lang('pgcd.action'); ?></th>
+                    <th class="pgcd_table_th" width="5%"><?= lang('ma_dmp.p_nr'); ?></th>
+                    <th class="pgcd_table_th" width="60%"><?= lang('ma_dmp.p_title'); ?></th>
+                    <th class="pgcd_table_th" width="10%"><?= lang('ma_dmp.p_form'); ?></th>
+                    <th class="pgcd_table_th" width="10%"><?= lang('ma_dmp.p_version'); ?></th>
+                    <th class="pgcd_table_th" width="10%"><?= lang('ma_dmp.updated_at'); ?></th>
+                    <th class="pgcd_table_th" width="10%"><?= lang('ma_dmp.p_status'); ?></th>
+                    <th class="pgcd_table_th" colspan=4><?= lang('ma_dmp.action'); ?></th>
                 </tr>
                 <?php
                 for ($r = 0; $r < count($plans); $r++) {
                     $line = $plans[$r];
-                    $status = lang('pgcd.plans_status_' . $line['p_status']);
+                    $status = lang('ma_dmp.plans_status_' . $line['p_status']);
                     /* PDF ****************************************************/
                     $pdf = '';
                     $edit = '';

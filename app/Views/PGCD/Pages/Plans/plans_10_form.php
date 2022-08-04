@@ -3,7 +3,7 @@
         <div class="col-8 mb-4">
             <label class="form_label"><?= lang('dgdp.plan_form'); ?></label>
             <select name="pgdc_form" class="form-control">
-                <option value=""><?= lang('pgcd.select_templat'); ?></option>
+                <option value=""><?= lang('ma_dmp.select_templat'); ?></option>
                 <?php
                 /******************************************************** TITLE */
                 $forms = new \App\Models\PGCD\PlansForm();
