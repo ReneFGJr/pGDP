@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Models\PGCD;
+namespace App\Models\dmp;
 
 use CodeIgniter\Model;
 
 class Index extends Model
 {
-	protected $DBGroup              = 'pq';
-	protected $table                = 'areas';
+	protected $DBGroup              = 'default';
+	protected $table                = '*';
 	protected $primaryKey           = 'id';
 	protected $useAutoIncrement     = true;
 	protected $insertID             = 0;
@@ -40,8 +40,16 @@ class Index extends Model
 	protected $beforeDelete         = [];
 	protected $afterDelete          = [];
 
-	function index()
+	function index($d1='',$d2='',$d3='')
 		{
-			
+			$sx = view('dmp/headers/header');
+			$sx .= view('dmp/headers/navbar');
+			switch($d1)
+				{
+					default:
+						$sx .= view('dmp/welcome');
+				}
+			$sx .= view('dmp/headers/footer');
+			return $sx;
 		}
 }

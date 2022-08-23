@@ -20,14 +20,19 @@ class maDMP extends BaseController
 {
     public function index($act = '', $subact = '', $id = '')
     {
+        $DMP = new \App\Models\dmp\Index();
+        return $DMP->index($act,$subact,$id);
+
         $user = 1;
         $data['page_title'] = 'Gestão do Plano de Ciclo de Dados - PGCD';
         $sx = '';
         $sx .= view('PGCD/Headers/header', $data);
         $sx .= view('PGCD/Headers/navbar', $data);
+        /*
+        $sx .= $
         switch ($act) {
             case 'admin':
-                $Admin = new \App\Models\PGCD\Admin();
+
                 $sx .= $Admin->index($subact, $id);
                 break;
             case 'plans':
@@ -42,6 +47,7 @@ class maDMP extends BaseController
                 $sx .= $Plans->plans_list($user);
                 break;
         }
+        */
         $sx .= view('PGCD/Headers/footer', $data);
         return $sx;
     }
