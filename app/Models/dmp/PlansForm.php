@@ -56,6 +56,7 @@ class PlansForm extends Model
 			->join('plan_form_fields', 'plf_plan_id = id_pf')
 			->join('plan_form_section', 'plf_plan_section = id_pfs')
 			->join('plan_form_values', 'pv_field = id_plf', 'left')
+			->join('plan_form_fields_tips', 'tips_fld_id = id_plf', 'left')
 			->where('id_pf', $form)
 			->where('id_pfs', $tab)
 			->orderBy('plf_ord')

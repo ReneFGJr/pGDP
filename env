@@ -15,6 +15,8 @@
 #--------------------------------------------------------------------
 
 # CI_ENVIRONMENT = production
+url_lattes = 'https://brapci.inf.br/ws/api/?verb=lattesdata&q='
+token_lattes = 'ss';
 
 #--------------------------------------------------------------------
 # APP

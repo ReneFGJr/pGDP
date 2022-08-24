@@ -51,6 +51,10 @@ class PlansFormSections extends Model
 				->where('pfs_form',$id)
 				->orderBy('pfs_order')
 				->findAll();
+			if (count($dt) == 0)
+				{
+					$dt[0] = array('id_pfs' => 1, 'pfs_section_name'=>'Geral','pfs_form' => $id, 'pfs_title' => 'Geral', 'pfs_order' => 1);
+				}
 			return $dt;
 		}
 }

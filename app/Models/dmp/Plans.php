@@ -86,9 +86,127 @@ class Plans extends Model
 		return $sx;
 	}
 
+	function create_plan_api($da)
+		{
+			$projeto = (array)$da['projeto'];
+			$abs = $projeto['resumo'];
+			$title = $projeto['titulo'];
+			$proc = $da['numeroProcesso'];
+			$dt['p_title'] = $title;
+			$dt['p_own'] = 1;
+			$dt['p_nr'] = $proc;
+			$dt['p_year'] = substr($da['numeroProcesso'],7,4);
+			$dt['p_version'] = 1;
+			$dt['p_draft'] = 1;
+			$dt['p_status'] = 0;
+			$dt['p_form'] = 1;
+			$dt['updated_at'] = date("Y-m-d H:i:s");
+			$dt['p_persistent_id'] = '';
+			$dx = $this->where('p_nr',$proc)->findAll();
+			if (count($dx) == 0)
+				{
+					$id = $this->set($dt)->insert();
+					$sx = metarefresh(PATH.MODULE.'/dmp/plans/edit/'.$id);
+
+				}
+		}
+
+	function form()
+	{
+		$erro = '';
+		$LattesData = new \App\Models\LattesData\LattesData();
+		$proc = '';
+
+		if (isset($_POST['process']) and (strlen($_POST['process']) > 0)) {
+			$proc = $_POST['process'];
+			$proc = $LattesData->padroniza_processo($proc);
+
+
+			switch ($proc[1]) {
+				case '0':
+					$proc = $proc[0];
+					break;
+				case '2':
+					$erro = 'Número do processo inválido - ' . $proc[0];
+					$proc = '';
+					break;
+				default:
+					$proc = '';
+					break;
+			}
+		}
+
+		$sx = '
+            <div class="border border-1 border-primary" style="width: 100%;">
+            <div class="card-body">
+              <h1 class="card-title">Depositar</h1>
+              <h5 class="card-subtitle mb-2 text-muted">Conjunto de dados (<i>Datasets</i>)</h5>
+              <p class="card-text">
+              ';
+		$sx .= form_open(PATH.COLLECTION.'/plans/new_api');
+		//$sx .= '<form method="post" accept-charset="utf-8">';
+		$sx .= 'Informe o número do processo no CNPq para iniciar o depósito.';
+		$sx .= form_input('process', '', 'class="form-control" placeholder="Número do processo"');
+		$sx .= 'Ex: 123456/2022-2 - 20143042677';
+		$info = 'O número do processo do CNPQ é composto por seis dígitos, ' . chr(13)
+			. ' seguido de um ponto e dois dígitos. Ex: 123456/2022-2 - ' . chr(13)
+			. ' O número do processo é disponibilizado em seu termo de outorga.';
+
+		$sx .= ' <span title="' . $info . '" style="cursor: pointer; font-size: 150%">&#x1F6C8;</span><br>';
+		$sx .= form_submit('action', 'depositar', 'class="btn btn-primary" style="width: 100%;"');
+		$sx .= form_close();
+		$sx .= '
+              </p>
+            </div>
+          </div>';
+
+		if ($erro != '') {
+			$sx .= '<div class="alert alert-danger" role="alert">' . $erro . '</div>';
+		}
+		return $sx;
+	}
+
+	function Home()
+	{
+		$sx = '';
+		$LattesData = new \App\Models\LattesData\LattesData();
+		if (isset($_POST['process']) and (strlen($_POST['process']) > 0)) {
+			$proc = $_POST['process'];
+			$proc = $LattesData->padroniza_processo($proc);
+			jslog("Processo: " . $proc[1]);
+			if ($proc[1] != 0) {
+				$sx .= $this->welcome();
+			} else {
+				$url = PATH.COLLECTION.'/plans/new_api';
+				$sx .= $LattesData->show_metadate($proc,$url);
+			}
+		} else {
+			$sx .= $this->welcome();
+		}
+		//$sx .= '20113023806';
+		return $sx;
+	}
+
+	function welcome()
+	{
+		$sx = '';
+		$sx = h('Crie seu Plano de Gestão de Dados',3);
+		$sx .= '<p>Este sistema é integrado com a Plataforma CarlosChagas!</p>';
+		$sx .= '<p>Este espaço é destinado para que pesquisadores possam realizar o depósito dos seus conjuntos de dados que tiveram suas pesquisas financiadas totalmente ou parcialmente pelo CNPq.</p>';
+		$sx .= '<p>Para iniciar a submissão, preencha o campo à direita da tela com número do processo no CNPq, depois clique em “Depositar”.</p>';
+		$sx .= '<p>Após essa etapa inicial, será encaminhado um e-mail confirmando o cadastro do projeto no LattesData. Caso tenha alguma dúvida no acesso ou preenchimento dos metadados, entre em contato com o seguinte e-mail: lattesdata@cnpq.br.</p>';
+		$sx .= '<div style="height: 100px"></div>';
+		return $sx;
+	}
+
 	function new_api($typ='cnpq')
 		{
+			$Form = new \App\Models\LattesData\Forms();
+			$sa = $this->Home();
+			$sb = $this->form();
 
+			$sx = bs(bsc($sa,6).bsc($sb,6));
+			return $sx;
 		}
 
 	function btn_new_plan()

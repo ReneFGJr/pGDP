@@ -15,7 +15,7 @@
             ?>
         </div>
         <div class="col-4 info mb-4">
-            <?= lang('dgcd.plan_title_info'); ?>
+            <?= lang('dmp.plan_title_info'); ?>
         </div>
     </div>
 </div>
