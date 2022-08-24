@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Models\PGCD;
+namespace App\Models\dmp;
 
 use CodeIgniter\Model;
 
 class PlansForm extends Model
 {
-	protected $DBGroup              = 'pgcd';
+	protected $DBGroup              = 'dmp';
 	protected $table                = 'plan_form';
 	protected $primaryKey           = 'id_pf';
 	protected $useAutoIncrement     = true;
@@ -46,7 +46,7 @@ class PlansForm extends Model
 
 	function form($pr, $tab)
 	{
-		$Plans = new \App\Models\PGCD\Plans();
+		$Plans = new \App\Models\dmp\Plans();
 		$dt = $Plans->find($pr);
 
 		$form = $dt['p_form'];
@@ -64,7 +64,7 @@ class PlansForm extends Model
 		$sx = '';
 		for ($r = 0; $r < count($dt); $r++) {
 			$data = $dt[$r];
-			$view = 'PGCD/Forms/' . strtolower($data['plf_type']);
+			$view = 'dmp/Forms/' . strtolower($data['plf_type']);
 			$sx .= view($view, $data);
 		}
 		return $sx;

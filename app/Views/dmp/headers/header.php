@@ -26,7 +26,7 @@ if (!isset($page_title)) {
 
     <!---- CSS -->
     <link rel="stylesheet" href="<?= URL; ?>/css/bootstrap.min.css">
-    <link rel="stylesheet" href="<?= URL; ?>/css/brapci.css?v0.0.4">
+    <link rel="stylesheet" href="<?= URL; ?>/css/dmp.css?v0.0.4">
     <link rel="stylesheet" href="<?= URL; ?>/css/bootstrap-datepicker.min.css">
 </head>
 

@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Models\PGCD;
+namespace App\Models\dmp;
 
 use CodeIgniter\Model;
 
 class PlansFormSections extends Model
 {
-	protected $DBGroup              = 'pgcd';
+	protected $DBGroup              = 'dmp';
 	protected $table                = 'plan_form_section';
 	protected $primaryKey           = 'id_pfs';
 	protected $useAutoIncrement     = true;
@@ -42,7 +42,7 @@ class PlansFormSections extends Model
 
 	function index()
 		{
-			
+
 		}
 
 	function tabs($id)

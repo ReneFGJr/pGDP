@@ -1,0 +1,123 @@
+.bg-pq
+    {
+        background-color: #946856;
+    }
+.bg-benancib
+    {
+        background-color: #830706;
+    }
+.bg-tools
+    {
+        background-color: #a2028a;
+    }
+a
+    {
+        text-decoration: none;
+    }
+a:hover
+    {
+        text-decoration: none;
+    }
+
+.text_75
+    {
+        font-size: 75%;
+    }
+.text_65
+    {
+        font-size: 65%;
+    }
+.text_50
+    {
+        font-size: 50%;
+    }
+.text_35
+    {
+        font-size: 35%;
+    }
+
+.href
+    {
+        color: #888;
+        text-decoration: none;
+    }
+
+.href:hover
+    {
+        color: #000;
+        text-decoration: none;
+    }
+
+.view_more
+    {
+        color:blue;
+        text-align: end;
+    }
+
+.bullet
+    {
+       border-radius: 10px;
+       border: 1px solid #AAA;
+       background-color: #DDD;
+       padding: 0px 5px;
+    }
+/******* ICONES *************/
+.cnpq
+{
+    background: url(/img/icons/lattes.png) no-repeat scroll -100px 0px transparent;
+    display: block; float: left; height: 27px; margin: -4px 6px 0 4px;
+    overflow: hidden!important; text-indent: -9999px; width: 32px;
+}
+
+input.form-control, textarea.form-control, select.form-control
+    {
+        color: #000;
+        font-weight: bold;
+        border: 1px solid #0000;
+        background: #EEE;
+    }
+/************************ dmp *******/
+a.dmp_view_plans
+    {
+        color: #000;
+        font-weight: 400;
+    }
+a.dmp_view_plans:hover
+    {
+        color: #000;
+        font-weight: bold;
+    }
+.dmp_edit_plans, a.dmp_edit_plans, a.dmp_trash_plans
+    {
+        color: #000;
+        font-weight: bold;
+    }
+
+.dmp_nav-item-active, a.dmp_nav-item-active, a.dmp_nav-item-active:hover
+    {
+        background-color: #0D3E8D;
+        border-radius: 20px 20px 0px 0px;
+        /* font-weight: bold; */
+        color: white;
+    }
+.dmp_border
+    {
+        background: #AAA;
+        height: 2px;
+    }
+
+.dmp_table_th
+    {
+        background-color: #0D3E8D;;
+        color: white;
+    }
+.dmp_table
+    {
+        border: 1px solid #0D3E8D;
+    }
+
+.dmp_h
+    {
+         border-top: 2px solid #AAA;
+         padding-top: 5px;
+    }

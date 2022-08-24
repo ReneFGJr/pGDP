@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Models\PGCD;
+namespace App\Models\dmp;
 
 use CodeIgniter\Model;
 
 class PlansCollaborationsInstitutions extends Model
 {
-	protected $DBGroup              = 'pgcd';
+	protected $DBGroup              = 'dmp';
 	protected $table                = 'plan_form_institution';
 	protected $primaryKey           = 'id_pfi';
 	protected $useAutoIncrement     = true;
@@ -46,7 +46,7 @@ class PlansCollaborationsInstitutions extends Model
 	{
 		$sx = '';
 		$data['id_p'] = $id;
-		$sx .= view('PGCD/Pages/Plans/plans_20_colaborations_invitation', $data);
+		$sx .= view('dmp/Pages/Plans/plans_20_colaborations_invitation', $data);
 		return $sx;
 	}
 
@@ -57,10 +57,10 @@ class PlansCollaborationsInstitutions extends Model
 			->orderby('pfi_order')
 			->findAll();
 
-		$sx = '<table class="table pgcd_table" style="border: 1px solid #000;">';
-		$sx .= '<tr class="pgcd_table_th">';
-		$sx .= '<th class="pgcd_table_th" width="5%">' . lang('ma_dmp.order') . '</th>';
-		$sx .= '<th class="pgcd_table_th" width="95%">' . lang('ma_dmp.institution') . '</th>';
+		$sx = '<table class="table dmp_table" style="border: 1px solid #000;">';
+		$sx .= '<tr class="dmp_table_th">';
+		$sx .= '<th class="dmp_table_th" width="5%">' . lang('ma_dmp.order') . '</th>';
+		$sx .= '<th class="dmp_table_th" width="95%">' . lang('ma_dmp.institution') . '</th>';
 		$sx .= '</tr>';
 
 		for ($r = 0; $r < count($dt); $r++) {

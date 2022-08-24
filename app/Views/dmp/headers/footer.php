@@ -27,7 +27,7 @@ if (!isset($bg)) {
 
                     <ul class="list-unstyled mb-0">
                         <li>
-                            <a href="/pgcd" class="text-white">Home</a>
+                            <a href="/dmp" class="text-white">Home</a>
                         </li>
                     </ul>
                 </div>

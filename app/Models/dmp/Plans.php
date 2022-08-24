@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Models\PGCD;
+namespace App\Models\dmp;
 
 use CodeIgniter\Model;
 
 class Plans extends Model
 {
-	protected $DBGroup              = 'pgcd';
+	protected $DBGroup              = 'dmp';
 	protected $table                = 'plans';
 	protected $primaryKey           = 'id_p';
 	protected $useAutoIncrement     = true;
@@ -52,7 +52,7 @@ class Plans extends Model
 			->orderBy('created_at desc')
 			->findall();
 		$dt['plans'] = $dt;
-		$sx .= view('PGCD/Pages/Plans/plans_00_list', $dt);
+		$sx .= view('dmp/Pages/Plans/plans_00_list', $dt);
 		return $sx;
 	}
 
@@ -62,6 +62,9 @@ class Plans extends Model
 		$data = array();
 		$sx = '';
 		switch ($act) {
+			case 'new_api':
+				$sx .= $this->new_api();
+				break;
 			case 'new':
 				$sx .= $this->new();
 				break;
@@ -77,8 +80,33 @@ class Plans extends Model
 			default:
 				$sx .= h("list");
 				$sx .= $this->plans_list($user);
+				$sx .= bs(bsc($this->btn_new_plan().' | '. $this->btn_new_plan_cnpq(),12));
 				break;
 		}
+		return $sx;
+	}
+
+	function new_api($typ='cnpq')
+		{
+
+		}
+
+	function btn_new_plan()
+		{
+			$link = PATH.COLLECTION.'/plans/new';
+			$sx = '<a href="' . $link . '" class="btn btn-outline-primary disabled">';
+			$sx .= lang('ma_dmp.new_plan');
+			$sx .= '</a>';
+			return $sx;
+		}
+
+	function btn_new_plan_cnpq()
+	{
+		$link = PATH . COLLECTION . '/plans/new_api';
+		$disabled = '';
+		$sx = '<a href="' . $link . '" class="btn btn-outline-primary '.$disabled.'">';
+		$sx .= lang('ma_dmp.new_plan_api');
+		$sx .= '</a>';
 		return $sx;
 	}
 
@@ -86,16 +114,16 @@ class Plans extends Model
 	{
 		$sx = '';
 		if ($plan = $this->plan_new_save()) {
-			redirect('Pgcd::index/plans');
+			redirect('dmp::index/plans');
 		}
 		$data['plan_nr'] = lang('ma_dmp.plan_new');
-		$sx .= view('PGCD/Pages/Plans/plans_00_form_open', $data);
-		$sx .= view('PGCD/Pages/Plans/plans_01_plan_new', $data);
-		$sx .= view('PGCD/Pages/Plans/plans_02_id', $data);
-		$sx .= view('PGCD/Pages/Plans/plans_11_title', $data);
-		$sx .= view('PGCD/Pages/Plans/plans_10_form', $data);
-		$sx .= view('PGCD/Pages/Plans/plans_19_submit', $data);
-		$sx .= view('PGCD/Pages/Plans/plans_99_form_close', $data);
+		$sx .= view('dmp/Pages/Plans/plans_00_form_open', $data);
+		$sx .= view('dmp/Pages/Plans/plans_01_plan_new', $data);
+		$sx .= view('dmp/Pages/Plans/plans_02_id', $data);
+		$sx .= view('dmp/Pages/Plans/plans_11_title', $data);
+		$sx .= view('dmp/Pages/Plans/plans_10_form', $data);
+		$sx .= view('dmp/Pages/Plans/plans_19_submit', $data);
+		$sx .= view('dmp/Pages/Plans/plans_99_form_close', $data);
 		return $sx;
 	}
 
@@ -103,7 +131,7 @@ class Plans extends Model
 	{
 		$data = $this->find($id);
 		$sx = '';
-		$sx .= view('PGCD/Pages/Plans/plans_02_id', $data);
+		$sx .= view('dmp/Pages/Plans/plans_02_id', $data);
 		return $sx;
 	}
 
@@ -111,15 +139,15 @@ class Plans extends Model
 	{
 		$data = $this->find($id);
 		$sx = '';
-		$sx .= view('PGCD/Pages/Plans/plans_02_id', $data);
-		$sx .= view('PGCD/Pages/Plans/plans_00_remove');
+		$sx .= view('dmp/Pages/Plans/plans_02_id', $data);
+		$sx .= view('dmp/Pages/Plans/plans_00_remove');
 
 		return $sx;
 	}
 
 	function edit($id)
 	{
-		$PlansForm = new \App\Models\PGCD\PlansForm();
+		$PlansForm = new \App\Models\dmp\PlansForm();
 		$tab = round(get("pag"));
 		if ($tab < 1) {
 			$tab = 1;
@@ -131,9 +159,9 @@ class Plans extends Model
 		$sx = '';
 		$sx .= breadcrumbs();
 
-		$sx .= view('PGCD/Pages/Plans/plans_02_id', $data);
+		$sx .= view('dmp/Pages/Plans/plans_02_id', $data);
 
-		$sx .= view('PGCD/Pages/Plans/plans_00_tabs');
+		$sx .= view('dmp/Pages/Plans/plans_00_tabs');
 
 		/************************************* FORM */
 		$sx .= $PlansForm->form($id, $tab);

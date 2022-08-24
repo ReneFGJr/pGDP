@@ -50,7 +50,7 @@ class Database extends Config
         'port'     => 3306,
     ];
 
-    public $pgcd  = [
+    public $dmp  = [
         'DSN'      => '',
         'hostname' => 'localhost',
         'username' => '',

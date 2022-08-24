@@ -40,14 +40,27 @@ class Index extends Model
 	protected $beforeDelete         = [];
 	protected $afterDelete          = [];
 
-	function index($d1='',$d2='',$d3='')
+	function index($d1='',$d2='',$d3='',$d4='')
 		{
 			$sx = view('dmp/headers/header');
 			$sx .= view('dmp/headers/navbar');
 			switch($d1)
 				{
+					case 'admin':
+						$Admin = new \App\Models\dmp\Admin();
+						$sx .= $Admin->index($d2, $d3, $d4);
+						break;
+					case 'myspace':
+						$Plans = new \App\Models\dmp\Plans();
+						$sx .= $Plans->index();
+						break;
+					case 'plans':
+						$Plans = new \App\Models\dmp\Plans();
+						$sx .= $Plans->index($d2,$d3,$d4);
+						break;
 					default:
 						$sx .= view('dmp/welcome');
+						$sx .= view('dmp/summary');
 				}
 			$sx .= view('dmp/headers/footer');
 			return $sx;

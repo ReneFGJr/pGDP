@@ -38,17 +38,23 @@ $routes->set404Override();
 $routes->get('/', 'maDMP::index');
 $routes->get('/index.php/maDMP', 'maDMP::index');
 
-$routes->get('/pgcd/(:any)', 'maDMP::index/$1');
-$routes->get('/index.php/pgcd', 'maDMP::index');
+$routes->get('/dmp/(:any)', 'maDMP::index/$1');
+$routes->get('/index.php/dmp', 'maDMP::index');
 
 $routes->get('/maDMP/(:any)', 'maDMP::index/$1');
 $routes->get('/maDMP/(:any)/(:any)', 'maDMP::index/$1/$2');
 $routes->post('/maDMP/(:any)', 'maDMP::index/$1');
-$routes->post('/maDMP/(:any)/(:any)', 'maDMP::index/$1/$2');
+$routes->post('/admin/(:any)/(:any)', 'maDMP::index/admin/$1/$2');
+$routes->get('/admin/(:any)/(:any)', 'maDMP::index/admin/$1/$2');
+$routes->get('/admin/(:any)', 'maDMP::index/admin/$1');
 $routes->get('/index.php/maDMP', 'maDMP::index');
 
 $routes->get('/admin/(:any)/(:any)', 'maDMP::index/$1/$2');
 $routes->get('/admin/', 'maDMP::index/admin');
+
+//$routes->get('/popup/', 'popup::index');
+$routes->get('/popup/(:any)', 'popup::index/$1');
+$routes->post('/popup/(:any)', 'popup::index/$1');
 
 
 
