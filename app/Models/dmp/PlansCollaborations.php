@@ -6,7 +6,7 @@ use CodeIgniter\Model;
 
 class PlansCollaborations extends Model
 {
-	protected $DBGroup              = 'dmp';
+	protected $DBGroup              = 'default';
 	protected $table                = 'plan_form_collaboration';
 	protected $primaryKey           = 'id_pfc';
 	protected $useAutoIncrement     = true;

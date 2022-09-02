@@ -12,8 +12,8 @@ if ($answer == '') {
             <textarea class="form-control mt-1" rows="6" name="form_<?= $id_plf; ?>"><?= $pv_value; ?></textarea>
         </div>
         <div class="col-4">
-        <h5>Info</h5>
-            <p><?= $tips_description; ?></p>
+            <h5>Info</h5>
+            <p class="border border-secondary p-2"><?= $tips_description; ?></p>
         </div>
     </div>
 </div>

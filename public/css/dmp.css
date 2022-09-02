@@ -73,8 +73,8 @@ input.form-control, textarea.form-control, select.form-control
     {
         color: #000;
         font-weight: bold;
-        border: 1px solid #0000;
-        background: #EEE;
+        border: 1px solid rbg:(108,117,125);
+        background: #FFF;
     }
 /************************ dmp *******/
 a.dmp_view_plans

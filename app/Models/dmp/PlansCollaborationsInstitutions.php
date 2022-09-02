@@ -6,7 +6,7 @@ use CodeIgniter\Model;
 
 class PlansCollaborationsInstitutions extends Model
 {
-	protected $DBGroup              = 'dmp';
+	protected $DBGroup              = 'default';
 	protected $table                = 'plan_form_institution';
 	protected $primaryKey           = 'id_pfi';
 	protected $useAutoIncrement     = true;

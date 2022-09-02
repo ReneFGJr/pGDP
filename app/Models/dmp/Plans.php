@@ -6,7 +6,7 @@ use CodeIgniter\Model;
 
 class Plans extends Model
 {
-	protected $DBGroup              = 'dmp';
+	protected $DBGroup              = 'default';
 	protected $table                = 'plans';
 	protected $primaryKey           = 'id_p';
 	protected $useAutoIncrement     = true;

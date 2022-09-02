@@ -52,6 +52,9 @@ $routes->get('/index.php/maDMP', 'maDMP::index');
 $routes->get('/admin/(:any)/(:any)', 'maDMP::index/$1/$2');
 $routes->get('/admin/', 'maDMP::index/admin');
 
+//$routes->get('/pages/(:any)/(:any)', 'pages::acesso');
+$routes->get('/pages/', 'pages::genFile');
+
 //$routes->get('/popup/', 'popup::index');
 $routes->get('/popup/(:any)', 'popup::index/$1');
 $routes->post('/popup/(:any)', 'popup::index/$1');
